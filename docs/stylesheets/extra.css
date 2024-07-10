@@ -1,0 +1,21 @@
+.md-typeset .tabbed-content {
+    box-shadow: 0 -0.05rem var(--md-default-fg-color--lightest) inset;
+}
+
+aside.md-banner {
+    background-color: rgb(180, 2, 2);
+}
+
+[data-md-color-primary="intel"] {
+    --md-primary-fg-color:        #005B85;
+    --md-accent-fg-color:         #0095CA;
+    --md-primary-fg-color--light: #15BCEF;
+    --md-primary-fg-color--dark:  #00377C;
+}
+
+[data-md-color-primary="intel-dark"] {
+    --md-primary-fg-color:        #41728A;
+    --md-accent-fg-color:         #548FAD;
+    --md-primary-fg-color--light: #183544;
+    --md-primary-fg-color--dark:  #548FAD;
+}

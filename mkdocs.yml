@@ -1,0 +1,95 @@
+site_name: Intel® Trust Domain Extensions Enabling Guide
+
+theme:
+  name: material
+  custom_dir: docs/overrides
+  logo: assets/intel-header-logo.svg
+  favicon: assets/favicon-32x32.png
+  features:
+    - navigation.footer
+    - content.tooltips
+    - navigation.instant
+    - content.code.copy
+    - content.tabs.link
+    - header.autohide
+    - content.action.edit
+    - content.action.view
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    # Palette toggle for light mode
+    - scheme: default
+      primary: intel
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: intel-dark
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+repo_url: https://github.com/intel/confidential-computing-documentation/
+repo_name: Docu Source
+edit_uri: edit/main/docs/
+plugins:
+  - git-revision-date-localized:
+      enable_creation_date: true
+  - search
+  - macros:
+      module_name: main
+      on_error_fail: false
+  - print-site:
+      add_cover_page: true
+      cover_page_template: "docs/assets/templates/cover_page.tpl"
+markdown_extensions:
+  - toc:
+      permalink: true
+      toc_depth: 4
+  - abbr
+  - attr_list
+  - pymdownx.snippets:
+      auto_append:
+        - includes/abbreviations.md
+      check_paths:
+        True
+  - md_in_html
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+extra_css:
+  - stylesheets/extra.css
+extra:
+  environment:
+    local_deployment: !ENV [LOCAL_DEPLOYMENT, false]
+
+watch:
+  - includes
+nav:
+  - Introduction: index.md
+  - Infrastructure Setup: intel-tdx-enabling-guide/02/infrastructure_setup.md
+  - Hardware Selection: intel-tdx-enabling-guide/03/hardware_selection.md
+  - Hardware Setup: intel-tdx-enabling-guide/04/hardware_setup.md
+  - Host OS Setup: intel-tdx-enabling-guide/05/host_os_setup.md
+  - Guest OS Setup: intel-tdx-enabling-guide/06/guest_os_setup.md
+  - Trust Domain at Runtime: intel-tdx-enabling-guide/07/trust_domain_at_runtime.md
+not_in_nav: |
+  intel-tdx-enabling-guide/02/tcb_recoveries.md
+  misc/notices_and_disclaimers.md
+validation:
+  nav:
+    omitted_files: warn
+    not_found: warn
+    absolute_links: warn
+  links:
+    not_found: warn
+    anchors: warn
+    absolute_links: warn
+    unrecognized_links: warn

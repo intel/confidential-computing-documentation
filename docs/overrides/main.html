@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block extrahead  %}
+    {{ super() }}
+    {% if not config.extra.environment.local_deployment %}
+        {% include "partials/intel/loader.inc" %}
+        {% include "partials/intel/prefetch.inc" %}
+    {% endif %}
+{% endblock %}
+
+{% block header %}
+    {% include "partials/intel/en_US/gh_default.inc" %}
+    <script defer type="text/javascript" src="https://www.intel.com/content/dam/www/global/wap/performance-config.js" ></script>
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+    {% if not config.extra.environment.local_deployment %}
+        <script type="text/javascript">
+            // Configure TMS settings
+            window.wapProfile = 'profile-microsite';
+            window.wapLocalCode = 'us-en';
+            window.wapSection = 'cc-enabling';
+            window.wapEnv = 'dev';
+            if (window.location.hostname == "cc-enabling.trustedservices.intel.com") {
+                window.wapEnv = 'prod';
+            } else {
+                window.wapEnv = 'dev';
+            }
+            // Load TMS
+            (() => {
+                    let url = 'https://www.intel.com/content/dam/www/global/wap/main/wap-microsite.js';
+                    let po = document.createElement('script'); po.type = 'text/javascript'; po.async = true; po.src = url;
+                    let s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+            }) ();
+        </script>
+    {% endif %}
+
+    {% if page.url_to_print_page %}
+        <a href="{{ page.url_to_print_page }}" title="Print Site" class="md-content__button md-icon">
+            {% include ".icons/material/printer.svg" %}
+        </a>
+    {% endif %}
+
+    {{ super() }}
+{% endblock content %}
+
+{% block footer  %}
+    {{ super() }}
+
+    {% if not config.extra.environment.local_deployment %}
+        {% include "partials/intel/en_US/gf_default.inc" %}
+
+        <script type="text/javascript">
+            function waitForElm(selector) {
+                return new Promise(resolve => {
+                    if (document.querySelector(selector)) {
+                        return resolve(document.querySelector(selector));
+                    }
+
+                    const observer = new MutationObserver(mutations => {
+                        if (document.querySelector(selector)) {
+                            observer.disconnect();
+                            resolve(document.querySelector(selector));
+                        }
+                    });
+
+                    observer.observe(document.body, {
+                        childList: true,
+                        subtree: true
+                    });
+                });
+            }
+
+            waitForElm('div.footer-disclaimer > p').then((elm) => {
+                footerDisclaimerText = document.querySelector("div.footer-disclaimer > p");
+                if (footerDisclaimerText) {
+                    footerDisclaimerTextContent = footerDisclaimerText.innerHTML;
+                    footerDisclaimerText.innerHTML = footerDisclaimerTextContent.replace('Notices and Disclaimers</a></u>. //', 'Notices and Disclaimers</a></u>. // See <u><a href="/misc/notices_and_disclaimers/">other Notices and Disclaimers</a></u>. //');
+                    if (!footerDisclaimerText.innerHTML.includes("other Notices and Disclaimers")) {
+                        alert("Can't insert other notices and disclaimers, please contact Intel")
+                    }
+                } else {
+                    alert("Can't find disclaimer footer, please contact Intel")
+                }
+            });
+        </script>
+    {% endif %}
+{% endblock %}

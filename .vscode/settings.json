@@ -1,0 +1,80 @@
+{
+    // Helpful Visual Studio Code settings.
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4,
+    "editor.detectIndentation": false,
+
+    // Settings for Material for MkDocs yaml validation.
+    "yaml.schemas": {
+        "https://squidfunk.github.io/mkdocs-material/schema.json": "mkdocs.yml"
+    },
+    "yaml.customTags": [
+        "!ENV scalar",
+        "!ENV sequence",
+        "tag:yaml.org,2002:python/name:material.extensions.emoji.to_svg",
+        "tag:yaml.org,2002:python/name:material.extensions.emoji.twemoji",
+        "tag:yaml.org,2002:python/name:pymdownx.superfences.fence_code_format"
+    ],
+
+    // Settings for redhat.vscode-yaml extension.
+    "redhat.telemetry.enabled": false,
+
+    "cSpell.ignorePaths": [
+        "mkdocs.yml",
+        "settings.json"
+    ],
+
+    // Settings for streetsidesoftware.code-spell-checker extension.
+    "cSpell.words": [
+        "AZDCAP",
+        "addrepo",
+        "cracklib",
+        "csvtool",
+        "Datacenter",
+        "DCAP",
+        "devel"
+        "DIMM",
+        "distros",
+        "epel",
+        "figcaption",
+        "journalctl",
+        "keyrings",
+        "libsgx"
+        "libtdx"
+        "MCHECK",
+        "mitigations",
+        "nogpgcheck",
+        "PCCS",
+        "pccsadmin",
+        "pckcache",
+        "PCKCIDRT",
+        "PCKID",
+        "platformmanifest",
+        "PPID",
+        "QCNL",
+        "qgsd",
+        "rdmsr",
+        "RSEK",
+        "SEAMRR",
+        "TMPDIR",
+        "UEFI",
+        "virt",
+        "virtio"
+        "vsock"
+        "qcow"
+        "xvzf",
+        "extrahead",
+        "microsite",
+        "trustedservices",
+        "nodesource",
+        "developercertificate",
+        "creativecommons",
+        "sublicensable",
+        "waivable",
+        "Anson",
+        "signup",
+        "docu",
+    ]
+}

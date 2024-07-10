@@ -1,0 +1,12 @@
+{
+	// List of extensions recommended for users of this workspace.
+	"recommendations": [
+		"redhat.vscode-yaml",
+		"DavidAnson.vscode-markdownlint",
+		"streetsidesoftware.code-spell-checker",
+	],
+	// List of extensions not recommended for users of this workspace.
+	"unwantedRecommendations": [
+
+	]
+}
