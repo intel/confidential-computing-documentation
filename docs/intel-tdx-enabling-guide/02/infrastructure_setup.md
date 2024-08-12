@@ -888,11 +888,12 @@ Detailed steps to use this registration method:
     === "Ubuntu 23.10"
 
         ``` { .bash }
-        python3
+        python3 ./pccsadmin.py collect -d <platforms_to_register_path>
+        ```
 
 6. On the Registration Platform, execute the following command.
     The PCCS Admin Tool uses the data contained in the input JSON file to retrieve the corresponding PCK Certificates and TCB Infos from the PCS.
-    The tool generated a cache file for each platform contained in the the input JSON file.
+    The tool generates a cache file for each platform contained in the input JSON file.
     The cache files are written to an output folder, and the default output folder is `./cache/`.
 
     === "CentOS Stream 9"
