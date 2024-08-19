@@ -64,6 +64,9 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
       alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 extra_css:
   - stylesheets/extra.css
 extra:
@@ -74,6 +77,7 @@ extra:
 watch:
   - includes
 nav:
+  - Home: index.md
   - Intel TDX Enabling Guide:
     - Introduction: intel-tdx-enabling-guide/01/introduction.md
     - Infrastructure Setup: intel-tdx-enabling-guide/02/infrastructure_setup.md
