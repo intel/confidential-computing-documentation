@@ -74,13 +74,14 @@ extra:
 watch:
   - includes
 nav:
-  - Introduction: index.md
-  - Infrastructure Setup: intel-tdx-enabling-guide/02/infrastructure_setup.md
-  - Hardware Selection: intel-tdx-enabling-guide/03/hardware_selection.md
-  - Hardware Setup: intel-tdx-enabling-guide/04/hardware_setup.md
-  - Host OS Setup: intel-tdx-enabling-guide/05/host_os_setup.md
-  - Guest OS Setup: intel-tdx-enabling-guide/06/guest_os_setup.md
-  - Trust Domain at Runtime: intel-tdx-enabling-guide/07/trust_domain_at_runtime.md
+  - Intel TDX Enabling Guide:
+    - Introduction: intel-tdx-enabling-guide/01/introduction.md
+    - Infrastructure Setup: intel-tdx-enabling-guide/02/infrastructure_setup.md
+    - Hardware Selection: intel-tdx-enabling-guide/03/hardware_selection.md
+    - Hardware Setup: intel-tdx-enabling-guide/04/hardware_setup.md
+    - Host OS Setup: intel-tdx-enabling-guide/05/host_os_setup.md
+    - Guest OS Setup: intel-tdx-enabling-guide/06/guest_os_setup.md
+    - Trust Domain at Runtime: intel-tdx-enabling-guide/07/trust_domain_at_runtime.md
 not_in_nav: |
   intel-tdx-enabling-guide/02/tcb_recoveries.md
   misc/notices_and_disclaimers.md
