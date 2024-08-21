@@ -131,19 +131,19 @@ Note that the QGS cannot run on another machine, because the verification of the
     === "CentOS Stream 9"
 
         ``` { .bash }
-        --8<-- "docs/intel-tdx-enabling-guide/code/sgx_repo_setup.sh:cent-os-stream-9"
+        --8<-- "docs/code/sgx_repo_setup.sh:cent-os-stream-9"
         ```
 
     === "Ubuntu 23.10"
 
         ``` { .bash }
-        --8<-- "docs/intel-tdx-enabling-guide/code/sgx_repo_setup.sh:ubuntu_23_10"
+        --8<-- "docs/code/sgx_repo_setup.sh:ubuntu_23_10"
         ```
 
     === "openSUSE Leap 15.5 or SUSE Linux Enterprise Server 15-SP5"
 
         ``` { .bash }
-        --8<-- "docs/intel-tdx-enabling-guide/code/sgx_repo_setup.sh:opensuse_leap_15_5"
+        --8<-- "docs/code/sgx_repo_setup.sh:opensuse_leap_15_5"
         ```
 
 2. Install the QGS with the following command, which will also install the necessary prerequisites (the Quote Provider Library (QPL) and the Quoting Library (QL)).

@@ -112,19 +112,33 @@ Process:
 - In your favorite terminal, execute the following to build the container of the local documentation server:
 
     `docker build -t intel/cc-docu -f build/Dockerfile .`
-- In your favorite terminal, execute the following to start the local documentation server:
+- Depending on the documentation you want to start, use one of the following commands in your favorite terminal:
+    - Parent documentation:
 
-    ``` {.bash}
-    docker run --rm -i \
-    --env LOCAL_DEPLOYMENT=true \
-    -p 8000:8000 \
-    --name cc-docu \
-    -v ${PWD}:/docs \
-    intel/cc-docu
-    -f docs/mkdocs.yml
-    ```
+        ``` {.bash}
+        docker run --rm -i \
+        --env LOCAL_DEPLOYMENT=true \
+        -p 8000:8000 \
+        --name cc-docu \
+        -v ${PWD}:/docs \
+        intel/cc-docu \
+        -f docs/parent_doc/mkdocs.yml
+        ```
 
-- Open the preview of the documentation in your browser. The default URL is [http://localhost:8000/](http://localhost:8000/).
+    - Intel® Trust Domain Extensions Enabling Guide:
+
+        ``` {.bash}
+        docker run --rm -i \
+        --env LOCAL_DEPLOYMENT=true \
+        -p 8000:8000 \
+        --name cc-docu \
+        -v ${PWD}:/docs \
+        intel/cc-docu \
+        -f docs/child_docs/intel-tdx-enabling-guide/mkdocs.yml
+        ```
+
+- Open the preview of the documentation in your browser.
+    The default URL is [http://localhost:8000/](http://localhost:8000/).
     - Whenever you do a change to the documentation sources and save your change, the browser-based documentation will automatically reload without manual interaction
 
 

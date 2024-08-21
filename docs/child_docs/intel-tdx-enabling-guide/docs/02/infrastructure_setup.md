@@ -101,13 +101,13 @@ In the following, we provide details of the first alternative.
     === "CentOS Stream 9"
 
         ``` { .bash }
-        --8<-- "docs/intel-tdx-enabling-guide/code/sgx_repo_setup.sh:cent-os-stream-9"
+        --8<-- "docs/code/sgx_repo_setup.sh:cent-os-stream-9"
         ```
 
     === "Ubuntu 23.10"
 
         ``` { .bash }
-        --8<-- "docs/intel-tdx-enabling-guide/code/sgx_repo_setup.sh:ubuntu_23_10"
+        --8<-- "docs/code/sgx_repo_setup.sh:ubuntu_23_10"
         ```
 
 3. Install PCCS with following commands.
@@ -272,19 +272,19 @@ Detailed steps to use this registration method:
 
         === "CentOS Stream 9"
             ``` { .text }
-            --8<-- "docs/intel-tdx-enabling-guide/code/sgx_repo_setup.sh:cent-os-stream-9"
+            --8<-- "docs/code/sgx_repo_setup.sh:cent-os-stream-9"
             ```
 
         === "Ubuntu 23.10"
 
             ``` { .text }
-            --8<-- "docs/intel-tdx-enabling-guide/code/sgx_repo_setup.sh:ubuntu_23_10"
+            --8<-- "docs/code/sgx_repo_setup.sh:ubuntu_23_10"
             ```
 
         === "openSUSE Leap 15.5 or SUSE Linux Enterprise Server 15-SP5"
 
             ``` { .text }
-            --8<-- "docs/intel-tdx-enabling-guide/code/sgx_repo_setup.sh:opensuse_leap_15_5"
+            --8<-- "docs/code/sgx_repo_setup.sh:opensuse_leap_15_5"
             ```
 
     - Install MPA:
@@ -389,19 +389,19 @@ Detailed steps to use this registration method:
             === "CentOS Stream 9"
 
                 ``` { .bash }
-                --8<-- "docs/intel-tdx-enabling-guide/code/sgx_repo_setup.sh:cent-os-stream-9"
+                --8<-- "docs/code/sgx_repo_setup.sh:cent-os-stream-9"
                 ```
 
             === "Ubuntu 23.10"
 
                 ``` { .bash }
-                --8<-- "docs/intel-tdx-enabling-guide/code/sgx_repo_setup.sh:ubuntu_23_10"
+                --8<-- "docs/code/sgx_repo_setup.sh:ubuntu_23_10"
                 ```
 
             === "openSUSE Leap 15.5 or SUSE Linux Enterprise Server 15-SP5"
 
                 ``` { .text }
-                --8<-- "docs/intel-tdx-enabling-guide/code/sgx_repo_setup.sh:opensuse_leap_15_5"
+                --8<-- "docs/code/sgx_repo_setup.sh:opensuse_leap_15_5"
                 ```
 
         - Install PCKCIDRT:

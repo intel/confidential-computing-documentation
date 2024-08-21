@@ -1,0 +1,18 @@
+INHERIT: ../../mkdocs_base.yml
+
+site_name: Intel® TDX Enabling Guide
+
+edit_uri: edit/main/docs/child_docs/intel-tdx-enabling-guide
+watch:
+  - includes
+nav:
+  - Introduction: 01/introduction.md
+  - Infrastructure Setup: 02/infrastructure_setup.md
+  - Hardware Selection: 03/hardware_selection.md
+  - Hardware Setup: 04/hardware_setup.md
+  - Host OS Setup: 05/host_os_setup.md
+  - Guest OS Setup: 06/guest_os_setup.md
+  - Trust Domain at Runtime: 07/trust_domain_at_runtime.md
+not_in_nav: |
+  02/tcb_recoveries.md
+  misc/notices_and_disclaimers.md

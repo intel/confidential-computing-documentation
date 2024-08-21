@@ -58,19 +58,19 @@ Steps:
     === "Red Hat Enterprise Linux 9.4 KVM"
 
         ```
-        --8<-- "docs/intel-tdx-enabling-guide/code/sgx_repo_setup.sh:rhel_9_4_kvm"
+        --8<-- "docs/code/sgx_repo_setup.sh:rhel_9_4_kvm"
         ```
 
     === "Ubuntu 23.10"
 
         ```
-        --8<-- "docs/intel-tdx-enabling-guide/code/sgx_repo_setup.sh:ubuntu_23_10"
+        --8<-- "docs/code/sgx_repo_setup.sh:ubuntu_23_10"
         ```
 
     === "openSUSE Leap 15.5 or SUSE Linux Enterprise Server 15-SP5"
 
         ```
-        --8<-- "docs/intel-tdx-enabling-guide/code/sgx_repo_setup.sh:opensuse_leap_15_5"
+        --8<-- "docs/code/sgx_repo_setup.sh:opensuse_leap_15_5"
         ```
 
 2. Execute the following commands to install and run the sample application generating a TD Quote:
@@ -155,19 +155,19 @@ Steps:
     === "CentOS Stream 9"
 
         ```
-        --8<-- "docs/intel-tdx-enabling-guide/code/sgx_repo_setup.sh:cent-os-stream-9"
+        --8<-- "docs/code/sgx_repo_setup.sh:cent-os-stream-9"
         ```
 
     === "Ubuntu 23.10"
 
         ```
-        --8<-- "docs/intel-tdx-enabling-guide/code/sgx_repo_setup.sh:ubuntu_23_10"
+        --8<-- "docs/code/sgx_repo_setup.sh:ubuntu_23_10"
         ```
 
     === "openSUSE Leap 15.5 or SUSE Linux Enterprise Server 15-SP5"
 
         ```
-        --8<-- "docs/intel-tdx-enabling-guide/code/sgx_repo_setup.sh:opensuse_leap_15_5"
+        --8<-- "docs/code/sgx_repo_setup.sh:opensuse_leap_15_5"
         ```
 
 3. Execute the following command to install the dependencies for the [Quote Verification Sample](https://github.com/intel/SGXDataCenterAttestationPrimitives/tree/master/SampleCode/QuoteVerificationSample) application, retrieve the application, build the application, and use the application to verify the TD Quote (i.e., `quote.dat`):

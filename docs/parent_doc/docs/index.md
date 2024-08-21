@@ -27,7 +27,7 @@ Detailed instructions on how to contribute, including guidelines for submitting 
 
 <div class="grid cards" markdown><!-- markdownlint-disable-line MD033 -->
 
-- [:octicons-arrow-right-24: **Intel® TDX Enabling Guide**](intel-tdx-enabling-guide/01/introduction.md)
+- [:octicons-arrow-right-24: **Intel® TDX Enabling Guide**](intel-tdx-enabling-guide/01/introduction/index.html)
 
     This guide provides a distilled set of instructions for integrating, deploying, and using Intel TDX.
 

@@ -62,6 +62,7 @@
     "flagWords": [
     ],
     "ignorePaths": [
+        "mkdocs_base.yml",
         "mkdocs.yml",
         "settings.json"
     ]
