@@ -50,6 +50,7 @@ markdown_extensions:
   - abbr
   - attr_list
   - pymdownx.snippets:
+      base_path: !relative $config_dir
       auto_append:
         - includes/abbreviations.md
       check_paths:

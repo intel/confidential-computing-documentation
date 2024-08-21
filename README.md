@@ -111,10 +111,19 @@ Process:
 - With your favorite terminal, navigate to the folder containing the local clone of your fork (see step 2 of Section 2.2.2).
 - In your favorite terminal, execute the following to build the container of the local documentation server:
 
-    `docker build -t intel/cc-docu .`
+    `docker build -t intel/cc-docu -f build/Dockerfile .`
 - In your favorite terminal, execute the following to start the local documentation server:
 
-    `docker run --env LOCAL_DEPLOYMENT=true --rm -it -p 8000:8000 --name cc-docu -v ${PWD}:/docs intel/cc-docu`
+    ``` {.bash}
+    docker run --rm -i \
+    --env LOCAL_DEPLOYMENT=true \
+    -p 8000:8000 \
+    --name cc-docu \
+    -v ${PWD}:/docs \
+    intel/cc-docu
+    -f docs/mkdocs.yml
+    ```
+
 - Open the preview of the documentation in your browser. The default URL is [http://localhost:8000/](http://localhost:8000/).
     - Whenever you do a change to the documentation sources and save your change, the browser-based documentation will automatically reload without manual interaction
 
