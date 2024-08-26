@@ -31,40 +31,40 @@ theme:
 repo_url: https://github.com/intel/confidential-computing-documentation/
 repo_name: Docu Source
 plugins:
-  - git-revision-date-localized:
-      enable_creation_date: true
-  - search
-  - macros:
-      module_name: main
-      on_error_fail: false
-  - print-site:
-      add_cover_page: true
-      cover_page_template: "docs/assets/templates/cover_page.tpl"
+  git-revision-date-localized:
+    enable_creation_date: true
+  search: {}
+  macros:
+    module_name: main
+    on_error_fail: false
+  print-site:
+    add_cover_page: true
+    cover_page_template: "docs/assets/templates/cover_page.tpl"
 markdown_extensions:
-  - toc:
-      permalink: true
-      toc_depth: 4
-  - abbr
-  - attr_list
-  - pymdownx.snippets:
-      base_path: !relative $config_dir
-      auto_append:
-        - includes/abbreviations.md
-      check_paths:
-        True
-  - md_in_html
-  - admonition
-  - pymdownx.details
-  - pymdownx.superfences:
-      custom_fences:
-        - name: mermaid
-          class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format
-  - pymdownx.tabbed:
-      alternate_style: true
-  - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  toc:
+    permalink: true
+    toc_depth: 4
+  abbr: {}
+  attr_list: {}
+  pymdownx.snippets:
+    base_path: !relative $config_dir
+    auto_append:
+      - includes/abbreviations.md
+    check_paths:
+      True
+  md_in_html: {}
+  admonition: {}
+  pymdownx.details: {}
+  pymdownx.superfences:
+    custom_fences:
+      - name: mermaid
+        class: mermaid
+        format: !!python/name:pymdownx.superfences.fence_code_format
+  pymdownx.tabbed:
+    alternate_style: true
+  pymdownx.emoji:
+    emoji_index: !!python/name:material.extensions.emoji.twemoji
+    emoji_generator: !!python/name:material.extensions.emoji.to_svg
 extra_css:
   - stylesheets/extra.css
 extra:
