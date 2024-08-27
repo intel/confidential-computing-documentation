@@ -1,0 +1,68 @@
+// cSpell Settings
+{
+    // Version of the setting file. Always 0.2
+    "version": "0.2",
+    // language - current active spelling language
+    "language": "en",
+    // words - list of words to be always considered correct
+    "words": [
+        "AZDCAP",
+        "addrepo",
+        "cracklib",
+        "csvtool",
+        "Datacenter",
+        "DCAP",
+        "devel",
+        "DIMM",
+        "distros",
+        "epel",
+        "figcaption",
+        "journalctl",
+        "keyrings",
+        "libsgx",
+        "libtdx",
+        "MCHECK",
+        "mitigations",
+        "nogpgcheck",
+        "PCCS",
+        "pccsadmin",
+        "pckcache",
+        "PCKCIDRT",
+        "PCKID",
+        "platformmanifest",
+        "PPID",
+        "QCNL",
+        "qgsd",
+        "rdmsr",
+        "RSEK",
+        "SEAMRR",
+        "TMPDIR",
+        "UEFI",
+        "virt",
+        "virtio",
+        "vsock",
+        "qcow",
+        "xvzf",
+        "extrahead",
+        "microsite",
+        "trustedservices",
+        "nodesource",
+        "developercertificate",
+        "creativecommons",
+        "sublicensable",
+        "waivable",
+        "Anson",
+        "signup",
+        "docu",
+        "sigstruct",
+        "mkdocs"
+    ],
+    // flagWords - list of words to be always considered incorrect
+    // This is useful for offensive words and common spelling errors.
+    "flagWords": [
+    ],
+    "ignorePaths": [
+        "mkdocs.yml",
+        "settings.json"
+    ]
+}
