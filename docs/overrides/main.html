@@ -6,6 +6,11 @@
         {% include "partials/intel/loader.inc" %}
         {% include "partials/intel/prefetch.inc" %}
     {% endif %}
+    {% if page.meta and page.meta.keywords %}
+        <meta name="keywords" content="{{ page.meta.keywords }}" />
+    {% elif config.extra.environment.site_keywords %}
+        <meta name="keywords" content="{{ config.extra.environment.site_keywords }}" />
+    {% endif %}
 {% endblock %}
 
 {% block header %}
