@@ -1,3 +1,7 @@
+---
+description: A virtual machine (VM) protected by Intel® TDX is called a Trust Domain (TD). Several aspects are important for a TD at runtime.
+keywords: enabling guide, Intel TDX, Trust Domain Extension, Confidenial Computing, Trust Domain, runtime
+---
 <!---
 Copyright (C) 2024 Intel Corporation
 SPDX-License-Identifier: CC-BY-4.0

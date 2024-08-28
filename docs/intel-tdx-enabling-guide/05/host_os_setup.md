@@ -1,3 +1,7 @@
+---
+description: To use Intel® TDX, the host operating system (OS) must be enabled. Multiple distribtuions are ready for Intel TDX as a host OS.
+keywords: enabling guide, Intel TDX, Trust Domain Extension, Confidenial Computing, host OS, operating system
+---
 <!---
 Copyright (C) 2024 Intel Corporation
 SPDX-License-Identifier: CC-BY-4.0

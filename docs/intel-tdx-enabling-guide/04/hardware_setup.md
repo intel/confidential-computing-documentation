@@ -1,3 +1,7 @@
+---
+description: To use Intel® TDX, specific hardware configurations are needed. This includes the installation of an Intel TDX-enabled BIOs and the correct BIOS settings.
+keywords: enabling guide, Intel TDX, Trust Domain Extension, Confidenial Computing, hardware setup, hardware configuration
+---
 <!---
 Copyright (C) 2024 Intel Corporation
 SPDX-License-Identifier: CC-BY-4.0

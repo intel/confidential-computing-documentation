@@ -1,3 +1,7 @@
+---
+description: The Intel TDX Enabling Guide offers comprehensive instructions for the entire Intel TDX enablement workflow from infrastructure setup, hardware selection, hardware setup, host OS setup, guest OS setup to runtime topics.
+keywords: enabling guide, Intel TDX, Trust Domain Extension, Confidenial Computing, introduction, overview
+---
 <!---
 Copyright (C) 2024 Intel Corporation
 SPDX-License-Identifier: CC-BY-4.0
