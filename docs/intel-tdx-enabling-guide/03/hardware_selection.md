@@ -17,7 +17,7 @@ Please talk to your OEM/ODM provider to receive a platform fulfilling the listed
 
 ## CPU Requirements
 
-To enable Intel TDX, a [5th Gen Intel® Xeon® Scalable Processor](https://www.intel.com/content/www/us/en/products/docs/processors/xeon/5th-gen-xeon-scalable-processors.html) (code-named *Emerald Rapids*) is required.
+To enable Intel TDX, a [5th Gen Intel® Xeon® Scalable Processor](https://www.intel.com/content/www/us/en/products/docs/processors/xeon/5th-gen-xeon-scalable-processors.html) is required.
 
 
 ## DIMM (i.e., main memory) Requirements

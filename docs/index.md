@@ -39,7 +39,7 @@ Throughout this document, we use CSPs as examples for brevity.
 
 ## Scope
 
-In its current version, this guide is for Intel TDX on 5th Gen Intel® Xeon® Scalable processors, code-named Emerald Rapids.
+In its current version, this guide is for Intel TDX on 5th Gen Intel® Xeon® Scalable processors.
 The following TDX features are currently supported in this guide:
 
 - Launching a TD
