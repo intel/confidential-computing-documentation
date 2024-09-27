@@ -69,7 +69,7 @@ extra_css:
 extra:
   environment:
     local_deployment: !ENV [LOCAL_DEPLOYMENT, false]
-    site_keywords: Confidenial Computing, Confidenial Computing documentation, Intel, Intel SGX, Intel TDX
+    site_keywords: Confidential Computing, Confidential Computing documentation, Intel, Intel SGX, Intel TDX
 
 watch:
   - includes

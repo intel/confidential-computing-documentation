@@ -1,6 +1,6 @@
 ---
 description: Important information that needs to be considered by the infrastructure provider of an Intel® TDX offering. This includes setup of a collateral caching service and platform registration.
-keywords: enabling guide, Intel TDX, Trust Domain Extension, Confidenial Computing, infrastructure setup, registration, PCCS
+keywords: enabling guide, Intel TDX, Trust Domain Extension, Confidential Computing, infrastructure setup, registration, PCCS
 ---
 <!---
 Copyright (C) 2024 Intel Corporation

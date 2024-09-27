@@ -1,6 +1,6 @@
 ---
 description: To use Intel® TDX, the guest operating system (OS) must be enabled. Multiple distribtuions are ready for Intel TDX as a guest OS.
-keywords: enabling guide, Intel TDX, Trust Domain Extension, Confidenial Computing, guest OS, operating system
+keywords: enabling guide, Intel TDX, Trust Domain Extension, Confidential Computing, guest OS, operating system
 ---
 <!---
 Copyright (C) 2024 Intel Corporation
