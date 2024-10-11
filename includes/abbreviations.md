@@ -22,6 +22,7 @@ SPDX-License-Identifier: CC-BY-4.0
 *[IRS]: Intel® SGX and Intel® TDX Registration Service for Scalable Platforms
 *[ISV]: Independent Software Vendor
 *[MPA]: Multi-package Registration Agent
+*[MSR]: model specific register
 *[PCK]: Provisioning Certification Key
 *[PCKCIDRT]: PCK Cert ID Retrieval Tool
 *[PCS]: Intel® Provisioning Certification Service for ECDSA Attestation

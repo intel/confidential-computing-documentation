@@ -200,6 +200,9 @@ This registration is always done from the host OS of the platform.
     Platform registration is required no matter the count of CPUs installed in a system.
     Even if only one CPU is present, platform registration is still necessary.
 
+??? info "How to troubleshot registration?"
+    See the dedicated [troubleshooting section](#troubleshooting).
+
 A key piece of information required for this registration is the *Platform Manifest* (PM).
 The PM is a blob of data containing information about all CPUs in the system, including the shared platform keys which are negotiated between the available CPU packages in the platform.
 The contained shared platform keys are encrypted with the Registration Server's Encryption Key (RSEK), which is a public key.
@@ -921,6 +924,73 @@ Detailed steps to use this registration method:
 
     For example, to use the last location in the list, the cache file be present inside: `/tmp/.dcap-qcnl`.
     See the [sgx_default_qcnl.conf](https://github.com/intel/SGXDataCenterAttestationPrimitives/blob/cd27223301e7c2bc80c9c5084ad6f5c2b9d24f5c/QuoteGeneration/qcnl/linux/sgx_default_qcnl.conf#L38) file for more information.
+
+
+#### Troubleshooting
+
+There are a number of reasons for failure replies that can occur during platform registration.
+One of the most common failure return codes from registration is HTTP error status `400 - Bad Request` with the error message `PackageNotFound`.
+This can be caused by a number of things and the following steps can be used for troubleshooting:
+
+1. Install the necessary tool on your distribution of choice:
+
+    === "CentOS Stream 9"
+        ``` { .bash }
+        sudo yum install epel-release
+        sudo yum install msr-tools
+        ```
+
+    === "Ubuntu"
+        ``` { .bash }
+        sudo modprobe msr
+        sudo apt-get install msr-tools
+        ```
+
+2. Read MSR 0xCE bit 27 to check for production or pre-production CPUs:
+
+    ``` {.text}
+    sudo rdmsr 0xCE -f 27:27
+    ```
+
+    - If the result is `0`, you have production CPUs.
+        This enables you do to a regular registration and no changes to your setup are necessary.
+    - If the result is `1`, you have pre-production CPUs.
+        This means you need to point your registration tool/method to our "SBX/Sandbox" environment with the URL `https://sbx.api.trustedservices.intel.com` instead of our "LIV/live" environment with the URL `https://api.trustedservices.intel.com`.
+        If you are using the MPA for platform registration, you don't need to change anything, because MPA automatically detects which environment to connect to.
+
+3. Read MSR 0x503 to check for the "SGX Unlocked for Debug" state:
+
+    ```{.text}
+    sudo rdmsr 0x503
+    ```
+
+    - If the result is `0`, the machine is not in "SGX Unlocked for Debug" mode.
+        This enables you do to a regular registration and no changes to your setup are necessary.
+    - If the result is not `0`, the machine is in "SGX Unlocked for Debug" mode.
+        There are a few reasons that can cause this:
+        - You have a non-production signed microcode in your BIOS - see the troubleshooting step 4.
+        - Delayed Authentication Mode (DAM) is enabled.
+            This can be caused by a couple of reasons:
+            - There is a BIOS option that has enabled DAM.
+                You need to disable this option.
+            - The BIOS image installed in this system has DAM enabled in its Firmware Interface Table (FIT) options.
+                Contact your OEM/ODM or independent BIOS vendor for an updated BIOS with DAM disabled in the FIT.
+        - "SGX Debug Mode" is explicitly enabled by a BIOS option setting.
+            You must disable this setting.
+
+4. Read MSR 0x8b bits 32-63 to check the microcode version loaded on the platform:
+
+    ```{.text}
+    sudo rdmsr 0x8b -0 -f 63:32
+    ```
+
+    - If the microcode version number's most significant bit is not set (e.g., `0x00000001`), you have a production-signed microcode.
+        This enables you do to a regular registration and no changes to your setup are necessary.
+    - If the microcode version number's most significant bit is set (e.g., `0x80000001`), you don't have a production-signed microcode.
+        Contact you OEM/ODM or independent BIOS vendor for an updated BIOS with a production signed microcode.
+
+    !!! Note
+        Usually, the microcode version number can also be found in the platform's BIOS setup.
 
 
 ### TD Quote Verification
