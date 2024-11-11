@@ -23,7 +23,8 @@ Depending on your goal, there are different recommended ways to contribute to th
 
 - [Minor Changes](#21-minor-changes)
 - [Major Changes](#22-major-changes)
-- [Question and Remarks](#23-questions-and-remarks)
+- [Build and Preview Entire Documentation](#23-build-and-preview-entire-documentation)
+- [Question and Remarks](#24-questions-and-remarks)
 
 
 ### 2.1 Minor Changes
@@ -218,6 +219,40 @@ Process:
     Potentially, you will receive requests for changes.
 
 
-### 2.3 Questions and Remarks
+### 2.3 Build and Preview Entire Documentation
+
+- Build necessary Docker images:
+
+    ``` {.bash}
+    docker build -f build/Dockerfile.buildAll -t intel/cc-docu-build-all build
+    docker build -f build/Dockerfile.serveAll -t intel/cc-docu-serve-all build
+    ```
+
+- For every change, run a build of the entire documentation:
+
+    ``` {.bash}
+    docker run --rm -i \
+    -v "$(pwd)":/build_env \
+    -v "$(pwd)"/site:/target \
+    --env LOCAL_DEPLOYMENT=true \
+    --name cc-docu-build-all \
+    intel/cc-docu-build-all
+    ```
+
+- Start preview of the entire documentation:
+
+    ``` {.bash}
+    docker run --rm -i \
+    -p 8001:80 \
+    -v "$(pwd)/site":/usr/share/nginx/html \
+    --name cc-docu-serve-all \
+    intel/cc-docu-serve-all
+    ```
+
+- Open the preview of the documentation in your browser.
+    The default URL is [http://localhost:8001/](http://localhost:8001/).
+
+
+### 2.4 Questions and Remarks
 
 For questions and remarks regarding the documentation, which you do not directly want to contribute as a change, please open a GitHub Issue in this repository.

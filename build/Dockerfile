@@ -3,9 +3,11 @@
 
 FROM squidfunk/mkdocs-material:9.5.27
 
+WORKDIR /tmp
+
+COPY requirements.txt /tmp/requirements.txt
+
 # Install additional MkDocs plugins
-RUN pip install mkdocs-macros-plugin==1.0.5
-RUN pip install mkdocs-git-revision-date-localized-plugin==1.2.6
-RUN pip install mkdocs-print-site-plugin==2.5.0
+RUN pip install -r requirements.txt
 
 ENTRYPOINT ["/sbin/tini", "--", "mkdocs", "serve", "--dev-addr=0.0.0.0:8000"]
