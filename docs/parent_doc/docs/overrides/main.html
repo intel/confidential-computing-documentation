@@ -17,6 +17,7 @@
     {% include "partials/intel/en_US/gh_default.inc" %}
     <script defer type="text/javascript" src="https://www.intel.com/content/dam/www/global/wap/performance-config.js" ></script>
     {{ super() }}
+    {% include "partials/breadcrumbs.html" %}
 {% endblock %}
 
 {% block content %}

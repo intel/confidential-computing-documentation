@@ -1,0 +1,22 @@
+<!-- Navigation tabs -->
+<nav
+  class="md-tabs breadcrumbs--shadow"
+  aria-label="{{ lang.t('tabs') }}"
+  data-md-component="tabs"
+>
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      <li class="md-tabs__item md-tabs__item">
+        <a href="/" class="md-tabs__link">Home</a>
+      </li>
+      {% if "edit/main/docs/child_docs" in config.edit_uri %}
+        <li class="md-tabs__link">
+            >
+        </li>
+        <li class="md-tabs__item md-tabs__item--active">
+            <a href="{{ base_url ~ '/' ~ nav.items[0].url}}" class="md-tabs__link">{{ config.site_name }}</a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>
