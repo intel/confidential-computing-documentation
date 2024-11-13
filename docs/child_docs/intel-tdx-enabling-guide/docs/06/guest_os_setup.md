@@ -1,5 +1,5 @@
 ---
-description: To use Intel® TDX, the guest operating system (OS) must be enabled. Multiple distribtuions are ready for Intel TDX as a guest OS.
+description: To use Intel® TDX, the guest operating system (OS) must be enabled. Multiple distributions are ready for Intel TDX as a guest OS.
 keywords: enabling guide, Intel TDX, Trust Domain Extension, Confidential Computing, guest OS, operating system
 ---
 <!---
@@ -20,26 +20,44 @@ The *TDX Early Preview* distributions are the preferred way to prepare such an i
 The TDX Early Preview distributions are special distributions provided by partners for a convenient Intel TDX enablement experience.
 Currently, the following Intel TDX-enabled guest OSes are supported by TDX Early Preview distributions:
 
-- [CentOS Stream 9](https://sig.centos.org/virt/tdx/)
-- [Ubuntu 23.10](https://github.com/canonical/tdx/tree/mantic-23.10?tab=readme-ov-file#5-setup-td-guest)
-- [Ubuntu 24.04](https://github.com/canonical/tdx/tree/noble-24.04)
+- CentOS Stream 9
+- Ubuntu 24.04
+- openSUSE Leap 15.5 or SUSE Linux Enterprise Server 15-SP5
 
-    !!! Note
-        This guide currently does not cover Ubuntu 24.04
+To prepare a guest image for these OSes, refer to the instructions provided by the individual TDX Early Preview distributions:
 
-- [openSUSE Leap 15.5 or SUSE Linux Enterprise Server 15-SP5](https://github.com/SUSE/tdx-demo/tree/main)
+=== "CentOS Stream 9"
 
-To prepare a guest image for these OSes, follow the instructions provided by the individual TDX Early Preview distributions:
+    Follow instruction from the ["Create VM Disk Image" section](https://sig.centos.org/virt/tdx/guest/#create-vm-disk-image) on the "Run a TD guest (VM)" page in the Cent OS guide.
 
-- [CentOS Stream 9](https://sig.centos.org/virt/tdx/guest/)
-- [Ubuntu 23.10](https://github.com/canonical/tdx/tree/mantic-23.10?tab=readme-ov-file#6-boot-td-guest)
-- [openSUSE Leap 15.5 or SUSE Linux Enterprise Server 15-SP5](https://github.com/SUSE/tdx-demo/blob/main/INSTALL-SLES-15-SP5.md#preparing-the-guest-image)
+=== "Ubuntu 24.04"
+
+    Follow instruction from the ["Create TD Image" section](https://github.com/canonical/tdx/tree/3.0?tab=readme-ov-file#5-create-td-image) in the Canonical guide.
+
+    !!! warning
+        Our guide assumes that the remote attestation packages provided by Canonical are not installed on the guest OS.
+        To make sure to not install these packages:
+
+        - Keep the default setting of `TDX_SETUP_ATTESTATION=0` during the execution of `create-td-image.sh`.
+        - Do not manually execute `setup-attestation-guest.sh`, which is described in Section 8.3 of the Canonical guide.
+
+=== "openSUSE Leap 15.5 or SUSE Linux Enterprise Server 15-SP5"
+
+    Follow instruction from the ["Preparing the Guest Image" section](https://github.com/SUSE/tdx-demo/blob/1da7994045d7d1cf1192f5316e1a22c262376611/INSTALL-SLES-15-SP5.md#preparing-the-guest-image) in the SUSE guide.
 
 
 ## Launch a Trust Domain
 
-To launch a TD, follow the instructions provided by the individual TDX Early Preview distributions:
+To launch a TD, refer to the instructions provided by the individual TDX Early Preview distributions:
 
-- [CentOS Stream 9](https://sig.centos.org/virt/tdx/guest/)
-- [Ubuntu 23.10](https://github.com/canonical/tdx?tab=readme-ov-file#boot-td-guest)
-- [openSUSE Leap 15.5 or SUSE Linux Enterprise Server 15-SP5](https://github.com/SUSE/tdx-demo/blob/main/INSTALL-SLES-15-SP5.md#launching-a-tdx-guest)
+=== "CentOS Stream 9"
+
+    Follow instruction from the ["Configure and boot VM" section](https://sig.centos.org/virt/tdx/guest/#configure-and-boot-vm) on the "Run a TD guest (VM)" page in the CentOS guide.
+
+=== "Ubuntu 24.04"
+
+    Follow instruction from the ["Boot TD" section](https://github.com/canonical/tdx/tree/3.0?tab=readme-ov-file#6-boot-td) in the Canonical guide.
+
+=== "openSUSE Leap 15.5 or SUSE Linux Enterprise Server 15-SP5"
+
+    Follow instruction from the ["Launching a TDX guest" section](https://github.com/SUSE/tdx-demo/blob/1da7994045d7d1cf1192f5316e1a22c262376611/INSTALL-SLES-15-SP5.md#launching-a-tdx-guest) in the SUSE guide.

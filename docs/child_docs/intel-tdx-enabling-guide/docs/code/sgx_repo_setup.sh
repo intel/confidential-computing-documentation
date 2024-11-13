@@ -17,12 +17,25 @@ sudo yum-config-manager --add-repo file:///opt/intel/sgx_rpm_local_repo
 # --8<-- [end:rhel_9_4_kvm]
 
 # --8<-- [start:ubuntu_23_10]
-echo 'deb [signed-by=/etc/apt/keyrings/intel-sgx-keyring.asc arch=amd64] https://download.01.org/intel-sgx/sgx_repo/ubuntu mantic main' | sudo tee /etc/apt/sources.list.d/intel-sgx.list
+echo 'deb [signed-by=/etc/apt/keyrings/intel-sgx-keyring.asc arch=amd64] https://download.01.org/intel-sgx/sgx_repo/ubuntu mantic main' | sudo tee /etc/apt/sources.list.d/intel-sgx-mantic.list
+cat <<EOF | sudo tee /etc/apt/preferences.d/intel-sgx-mantic-pin-4000
+Package: *
+Pin: release o=Intel\ Corporation,n=mantic,c=main
+Pin-Priority: 499
+EOF
 wget https://download.01.org/intel-sgx/sgx_repo/ubuntu/intel-sgx-deb.key
 sudo mkdir -p /etc/apt/keyrings
 cat intel-sgx-deb.key | sudo tee /etc/apt/keyrings/intel-sgx-keyring.asc > /dev/null
 sudo apt-get update
 # --8<-- [end:ubuntu_23_10]
+
+# --8<-- [start:ubuntu_24_04]
+echo 'deb [signed-by=/etc/apt/keyrings/intel-sgx-keyring.asc arch=amd64] https://download.01.org/intel-sgx/sgx_repo/ubuntu noble main' | sudo tee /etc/apt/sources.list.d/intel-sgx.list
+wget https://download.01.org/intel-sgx/sgx_repo/ubuntu/intel-sgx-deb.key
+sudo mkdir -p /etc/apt/keyrings
+cat intel-sgx-deb.key | sudo tee /etc/apt/keyrings/intel-sgx-keyring.asc > /dev/null
+sudo apt-get update
+# --8<-- [end:ubuntu_24_04]
 
 # --8<-- [start:opensuse_leap_15_5]
 sudo mkdir /opt/intel

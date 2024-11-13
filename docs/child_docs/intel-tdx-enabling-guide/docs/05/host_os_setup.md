@@ -1,5 +1,5 @@
 ---
-description: To use Intel® TDX, the host operating system (OS) must be enabled. Multiple distribtuions are ready for Intel TDX as a host OS.
+description: To use Intel® TDX, the host operating system (OS) must be enabled. Multiple distributions are ready for Intel TDX as a host OS.
 keywords: enabling guide, Intel TDX, Trust Domain Extension, Confidential Computing, host OS, operating system
 ---
 <!---
@@ -19,22 +19,36 @@ The preferred way to enable Intel TDX in the host OS is to use the *TDX Early Pr
 These distributions are provided by partners for a convenient Intel TDX enablement experience.
 Currently, the following Intel TDX-enabled host OSes are supported by TDX Early Preview distributions:
 
-- [CentOS Stream 9](https://sig.centos.org/virt/tdx/)
-- [Ubuntu 23.10](https://github.com/canonical/tdx/tree/mantic-23.10)
-- [Ubuntu 24.04](https://github.com/canonical/tdx/tree/noble-24.04)
+- CentOS Stream 9
+- Ubuntu 24.04
+- openSUSE Leap 15.5 or SUSE Linux Enterprise Server 15-SP5
 
-    !!! Note
-        This guide currently does not cover Ubuntu 24.04
+To install the Intel TDX host OS kernel with KVM support, as well as the QEMU and libvirt packages required to create and manage the launch of TDs, refer to the instructions provided by the individual TDX Early Preview distributions:
 
-- [openSUSE Leap 15.5 or SUSE Linux Enterprise Server 15-SP5](https://github.com/SUSE/tdx-demo/tree/main)
+=== "CentOS Stream 9"
 
-To install the Intel TDX host OS kernel with KVM support, as well as the QEMU and libvirt packages required to create and manage the launch of TDs, follow the instructions provided by the individual TDX Early Preview distributions:
+    Follow instruction from the ["Configure a host" page](https://sig.centos.org/virt/tdx/host/) in the CentOS guide.
+    Note that we cover the "UEFI (BIOS) settings" section from the CentOS guide on our [Hardware Setup page](../04/hardware_setup.md#enable-intel-tdx-in-bios).
+    In the [next section of this page](#check-intel-tdx-enablement), we cover verification commands that go beyond the "Verification" section in the CentOS guide.
 
-- [CentOS Stream 9](https://sig.centos.org/virt/tdx/host/)
-- [Ubuntu 23.10](https://github.com/canonical/tdx/tree/mantic-23.10?tab=readme-ov-file#setup-tdx-host)
-- [openSUSE Leap 15.5 or SUSE Linux Enterprise Server 15-SP5](https://github.com/SUSE/tdx-demo/blob/main/INSTALL-SLES-15-SP5.md#preparing-the-host-environment)
+=== "Ubuntu 24.04"
 
-After successful installation of these software components, reboot the system into the BIOS setup menu and perform the [necessary Intel TDX enablement steps](../04/hardware_setup.md#enable-intel-tdx-in-bios).
+    Follow instruction from the ["Setup Host OS" section](https://github.com/canonical/tdx/tree/3.0?tab=readme-ov-file#setup-host-os) in the Canonical guide.
+    Note that we cover step "4.3 Enable Intel TDX in the Host's BIOS" on our [Hardware Setup page](../04/hardware_setup.md#enable-intel-tdx-in-bios) and a more detailed version of "4.4 Verify Intel TDX is Enabled on Host OS" is covered in [the next section of this page](#check-intel-tdx-enablement).
+
+    !!! warning
+        Our guide assumes that the remote attestation packages provided by Canonical are not installed on the host OS.
+        To make sure to not install these packages:
+
+        - Keep the default setting of `TDX_SETUP_ATTESTATION=0` during the execution of `setup-tdx-host.sh`.
+        - Do not manually execute `setup-attestation-host.sh`, which is described in Section 8.2 of the Canonical guide.
+
+=== "openSUSE Leap 15.5 or SUSE Linux Enterprise Server 15-SP5"
+
+    Follow instruction from the "Quickstart Scripts" or and "Manual instructions" sections in the [SUSE guide](https://github.com/SUSE/tdx-demo/blob/1da7994045d7d1cf1192f5316e1a22c262376611/INSTALL-SLES-15-SP5.md).
+
+
+If not done before, reboot the system into the BIOS setup menu and perform the [necessary Intel TDX enablement steps](../04/hardware_setup.md#enable-intel-tdx-in-bios).
 
 
 ### Check Intel TDX enablement
@@ -59,7 +73,7 @@ To check the status of your Intel TDX configuration, you can manually execute th
         sudo modprobe msr
         ```
 
-    === "Ubuntu 23.10"
+    === "Ubuntu 24.04"
 
         ``` { .bash }
         sudo apt install msr-tools
@@ -134,10 +148,10 @@ Note that the QGS cannot run on another machine, because the verification of the
         --8<-- "docs/code/sgx_repo_setup.sh:cent-os-stream-9"
         ```
 
-    === "Ubuntu 23.10"
+    === "Ubuntu 24.04"
 
         ``` { .bash }
-        --8<-- "docs/code/sgx_repo_setup.sh:ubuntu_23_10"
+        --8<-- "docs/code/sgx_repo_setup.sh:ubuntu_24_04"
         ```
 
     === "openSUSE Leap 15.5 or SUSE Linux Enterprise Server 15-SP5"
@@ -157,7 +171,7 @@ Note that the QGS cannot run on another machine, because the verification of the
             libsgx-dcap-ql
         ```
 
-    === "Ubuntu 23.10"
+    === "Ubuntu 24.04"
 
         ``` { .bash }
         sudo apt install -y \
@@ -186,7 +200,7 @@ Note that the QGS cannot run on another machine, because the verification of the
         sudo journalctl -u qgsd -f
         ```
 
-    === "Ubuntu 23.10"
+    === "Ubuntu 24.04"
 
         ``` { .bash }
         sudo journalctl -u qgsd -f
@@ -199,10 +213,7 @@ Note that the QGS cannot run on another machine, because the verification of the
         ```
 
 
-
-
 ### Configure QCNL
-
 
 On start, the QGS reads the configuration file `/etc/sgx_default_qcnl.conf`, and uses the contained settings for TD Quote Generation.
 This file contains various settings that might be important in your environment.
@@ -225,7 +236,7 @@ After changing settings in the file `/etc/sgx_default_qcnl.conf`, you have to re
     sudo systemctl restart qgsd.service
     ```
 
-=== "Ubuntu 23.10"
+=== "Ubuntu 24.04"
 
     ``` { .bash }
     sudo systemctl restart qgsd.service
@@ -246,14 +257,14 @@ In both cases, special options are necessary to enable the vsock interface.
 
 === "QEMU"
 
-    Add the following to the QEMU launch command:
+    Make sure that the following is part of your QEMU launch command:
     ``` { .bash }
     -device vhost-vsock-pci,guest-cid=3
     ```
 
 === "libvirt"
 
-    Add a vsock entry inside the `devices` element of the libvirt XML config file of the TD:
+    Make sure that a vsock entry is present inside the `devices` element of the libvirt XML config file of the TD:
 
     ``` { .xml }
     ...

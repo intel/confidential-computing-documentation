@@ -104,11 +104,17 @@ In the following, we provide details of the first alternative.
         --8<-- "docs/code/sgx_repo_setup.sh:cent-os-stream-9"
         ```
 
-    === "Ubuntu 23.10"
+    === "Ubuntu 24.04"
 
         ``` { .bash }
         --8<-- "docs/code/sgx_repo_setup.sh:ubuntu_23_10"
         ```
+
+        !!! Note
+            This configures the Ubuntu 23.10 package repository.
+            This is necessary, because the Ubuntu 24.04 package repository does currently not contain the PCCS package.
+            The priority of the Ubuntu 23.10 package repository is reduced so that all other packages are installed from the Ubuntu 24.04 package repository.
+            An alternative to the priority setting is to remove the Ubuntu 23.10 package repository after installing PCCS.
 
 3. Install PCCS with following commands.
     During installation, answer `Y` when asked if the PCCS should be installed now, `Y` when asked if PCCS should be configured now, and enter subscription key generated in step 1 when asked for `Intel PCS API key`.
@@ -129,7 +135,7 @@ In the following, we provide details of the first alternative.
         sudo systemctl start pccs
         ```
 
-    === "Ubuntu 23.10"
+    === "Ubuntu 24.04"
 
         ``` { .bash }
         curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
@@ -175,7 +181,7 @@ In the following, we provide details of the first alternative.
         sudo systemctl restart pccs
         ```
 
-    === "Ubuntu 23.10"
+    === "Ubuntu 24.04"
 
         ``` { .bash }
         sudo systemctl restart pccs
@@ -275,10 +281,10 @@ Detailed steps to use this registration method:
             --8<-- "docs/code/sgx_repo_setup.sh:cent-os-stream-9"
             ```
 
-        === "Ubuntu 23.10"
+        === "Ubuntu 24.04"
 
             ``` { .text }
-            --8<-- "docs/code/sgx_repo_setup.sh:ubuntu_23_10"
+            --8<-- "docs/code/sgx_repo_setup.sh:ubuntu_24_04"
             ```
 
         === "openSUSE Leap 15.5 or SUSE Linux Enterprise Server 15-SP5"
@@ -294,7 +300,7 @@ Detailed steps to use this registration method:
             sudo dnf --nogpgcheck install -y sgx-ra-service
             ```
 
-        === "Ubuntu 23.10"
+        === "Ubuntu 24.04"
 
             ``` { .bash }
             sudo apt install -y sgx-ra-service
@@ -309,16 +315,16 @@ Detailed steps to use this registration method:
 3. Reboot host OS to trigger registration.
 
 ??? info "How to check successful MPA-based registration?"
-    A log file for the MPA can be found at `/var/log/mpa_registration.log`.
+    A log file for the MPA can be found at `/var/log/mpa_registration.log`:
+    ``` { .text }
+    cat /var/log/mpa_registration.log
+    ```
+
     The following shows a sample log for a successful registration:
 
     ``` { .text }
-    cat /var/log/mpa_registration.log
-    [date time] INFO: SGX Registration Agent version: 1.20.100.2
+    [date time] INFO: SGX Registration Agent version: 1.22.100.3
     [date time] INFO: Starts Registration Agent Flow.
-    [date time] INFO: Server URL: https://api.trustedservices.intel.com:443
-    [date time] INFO: Registration Flow - PLATFORM_ESTABLISHMENT or TCB_RECOVERY.
-    ...
     [date time] INFO: Registration Flow - PLATFORM_ESTABLISHMENT or TCB_RECOVERY passed successfully.
     [date time] INFO: Finished Registration Agent Flow.
     ```
@@ -332,7 +338,7 @@ Detailed steps to use this registration method:
         sudo journalctl -u mpa_registration_tool
         ```
 
-    === "Ubuntu 23.10"
+    === "Ubuntu 24.04"
 
         ``` { .bash }
         sudo journalctl -u mpa_registration_tool
@@ -392,10 +398,10 @@ Detailed steps to use this registration method:
                 --8<-- "docs/code/sgx_repo_setup.sh:cent-os-stream-9"
                 ```
 
-            === "Ubuntu 23.10"
+            === "Ubuntu 24.04"
 
                 ``` { .bash }
-                --8<-- "docs/code/sgx_repo_setup.sh:ubuntu_23_10"
+                --8<-- "docs/code/sgx_repo_setup.sh:ubuntu_24_04"
                 ```
 
             === "openSUSE Leap 15.5 or SUSE Linux Enterprise Server 15-SP5"
@@ -412,7 +418,7 @@ Detailed steps to use this registration method:
                 sudo dnf --nogpgcheck install -y sgx-pck-id-retrieval-tool
                 ```
 
-            === "Ubuntu 23.10"
+            === "Ubuntu 24.04"
 
                 ``` { .text }
                 sudo apt install -y sgx-pck-id-retrieval-tool
@@ -434,28 +440,39 @@ Detailed steps to use this registration method:
 
             ``` { .text }
             sudo dnf install -y wget
-            wget https://download.01.org/intel-sgx/latest/dcap-latest/linux/distro/centos-stream9/PCKIDRetrievalTool_v1.20.100.2.tar.gz
-            tar xvzf PCKIDRetrievalTool_v1.20.100.2.tar.gz
+            wget -O PCKIDRetrievalTool.tar.gz \
+                https://download.01.org/intel-sgx/latest/dcap-latest/linux/distro/centos-stream9/PCKIDRetrievalTool_v1.22.100.3.tar.gz
+            mkdir -p PCKIDRetrievalTool
+            tar xvzf PCKIDRetrievalTool.tar.gz \
+                --strip-components=1 \
+                -C PCKIDRetrievalTool
             ```
 
-        === "Ubuntu 23.10"
+        === "Ubuntu 24.04"
 
             ``` { .text }
-            wget https://download.01.org/intel-sgx/latest/dcap-latest/linux/distro/ubuntu23.10-server/PCKIDRetrievalTool_v1.20.100.2.tar.gz
-            tar xvzf PCKIDRetrievalTool_v1.20.100.2.tar.gz
+            wget -O PCKIDRetrievalTool.tar.gz \
+                https://download.01.org/intel-sgx/latest/dcap-latest/linux/distro/ubuntu24.04-server/PCKIDRetrievalTool_v1.22.100.3.tar.gz
+            mkdir -p PCKIDRetrievalTool
+            tar xvzf PCKIDRetrievalTool.tar.gz \
+                --strip-components=1 \
+                -C PCKIDRetrievalTool
             ```
 
         === "openSUSE Leap 15.5 or SUSE Linux Enterprise Server 15-SP5"
 
             ``` { .text }
-            wget https://download.01.org/intel-sgx/latest/dcap-latest/linux/distro/suse15.4-server/PCKIDRetrievalTool_v1.20.100.2.tar.gz
-            tar xvzf PCKIDRetrievalTool_v1.20.100.2.tar.gz
+            wget -O PCKIDRetrievalTool.tar.gz \
+                https://download.01.org/intel-sgx/latest/dcap-latest/linux/distro/suse15.4-server/PCKIDRetrievalTool_v1.22.100.3.tar.gz
+            mkdir -p PCKIDRetrievalTool
+            tar xvzf PCKIDRetrievalTool.tar.gz \
+                --strip-components=1 \
+                -C PCKIDRetrievalTool
             ```
 
 2. <a id="PCKCIDRT-gater-PM"></a>
     On the host OS of platform to register, execute the PCKCIDRT.
     This step depends on the method used for PCKCIDRT retrieval in step 1:
-
 
     1. If retrieved from a package repository:
 
@@ -463,21 +480,21 @@ Detailed steps to use this registration method:
 
             ``` { .text }
             cd /opt/intel/sgx-pck-id-retrieval-tool
-            sudo ./PCKIDRetrievalTool
+            sudo ./PCKIDRetrievalTool -f $(hostnamectl --static).csv
             ```
 
-        === "Ubuntu 23.10"
+        === "Ubuntu 24.04"
 
             ``` { .text }
             cd /opt/intel/sgx-pck-id-retrieval-tool
-            sudo ./PCKIDRetrievalTool
+            sudo ./PCKIDRetrievalTool -f $(hostnamectl --static).csv
             ```
 
         === "openSUSE Leap 15.5 or SUSE Linux Enterprise Server 15-SP5"
 
             ``` { .text }
             cd /opt/intel/sgx-pck-id-retrieval-tool
-            sudo ./PCKIDRetrievalTool
+            sudo ./PCKIDRetrievalTool -f $(hostnamectl --static).csv
             ```
 
     2. If retrieved from a standalone package:
@@ -485,38 +502,36 @@ Detailed steps to use this registration method:
         === "CentOS Stream 9"
 
             ``` { .text }
-            cd PCKIDRetrievalTool_v1.20.100.2
-            sudo su
-            LD_LIBRARY_PATH=. ./PCKIDRetrievalTool
+            cd PCKIDRetrievalTool
+            sudo LD_LIBRARY_PATH=. ./PCKIDRetrievalTool -f $(hostnamectl --static).csv
             ```
 
-        === "Ubuntu 23.10"
+        === "Ubuntu 24.04"
 
             ``` { .text }
-            cd PCKIDRetrievalTool_v1.20.100.2
-            sudo su
-            LD_LIBRARY_PATH=. ./PCKIDRetrievalTool
+            cd PCKIDRetrievalTool
+            sudo LD_LIBRARY_PATH=. ./PCKIDRetrievalTool -f $(hostnamectl --static).csv
             ```
 
         === "openSUSE Leap 15.5 or SUSE Linux Enterprise Server 15-SP5"
 
             ``` { .text }
-            cd PCKIDRetrievalTool_v1.20.100.2
-            sudo su
-            LD_LIBRARY_PATH=. ./PCKIDRetrievalTool
+            cd PCKIDRetrievalTool
+            sudo LD_LIBRARY_PATH=. ./PCKIDRetrievalTool -f $(hostnamectl --static).csv
             ```
 
     On successful execution of the PCKCIDRT, you'll see output similar to the following:
 
     ``` { .text }
-    Intel(R) Software Guard Extensions PCK Cert ID Retrieval Tool Version 1.20.100.2
+    Intel(R) Software Guard Extensions PCK Cert ID Retrieval Tool Version 1.22.100.3
 
     Registration status has been set to completed status.
-    pckid_retrieval.csv has been generated successfully!
+    <hostname>.csv has been generated successfully!
     ```
 
-    As mentioned in the output, a file called `pckid_retrieval.csv` is generated.
-    This is a comma-delimited file containing the PM and other platform data.
+    If not explicitly defined via the `-f` flag, the output file is called `pckid_retrieval.csv`.
+    We suggest to use the hostname as file name to later identify the machine to which the file belongs.
+    The comma-delimited file content includes the PM and other platform data.
     For more about the included data, see our [PCKCIDRT README on GitHub](https://github.com/intel/SGXDataCenterAttestationPrimitives/tree/master/tools/PCKRetrievalTool).
 
     !!! Note
@@ -526,53 +541,53 @@ Detailed steps to use this registration method:
         It is only possible to retrieve a new PM by triggering "SGX Factory Reset" in the BIOS by setting the corresponding BIOS setting to *Enabled*.
         As a result, the CPUs will establish a new shared platform key and that a new registration is necessary afterwards.
 
-3. On the host OS of platform to register, use the following commands to extract the PM from the `pckid_retrieval.csv` and store the result in the file `platformmanifest.bin`:
+3. On the host OS of platform to register, use the following commands to extract the PM from the `<hostname>.csv` and store the result in the file `platformmanifest.bin`:
 
     === "CentOS Stream 9"
 
         ``` { .text }
         sudo dnf config-manager --set-enabled crb
         sudo dnf install -y ocaml-csv
-        csvtool col 6 pckid_retrieval.csv | xxd -r -p > platformmanifest.bin
+        sudo bash -c "csvtool col 6 $(hostnamectl --static).csv | xxd -r -p > $(hostnamectl --static)-pm.bin"
         ```
 
-    === "Ubuntu 23.10"
+    === "Ubuntu 24.04"
 
         ``` { .text }
         sudo apt-get install -y csvtool
-        csvtool col 6 pckid_retrieval.csv | xxd -r -p > platformmanifest.bin
+        sudo bash -c "csvtool col 6 $(hostnamectl --static).csv | xxd -r -p > $(hostnamectl --static)-pm.bin"
         ```
     === "openSUSE Leap 15.5 or SUSE Linux Enterprise Server 15-SP5"
 
         ``` { .text }
         sudo zypper install -y ocaml-csv
-        csvtool col 6 pckid_retrieval.csv | xxd -r -p > platformmanifest.bin
+        sudo bash -c "csvtool col 6 $(hostnamectl --static).csv | xxd -r -p > $(hostnamectl --static)-pm.bin"
         ```
 
 4. Dependent on the used option of this method:
 
     1. Online option: nothing needs to be done.
-    2. Offline option: use any out-of-band mechanism to copy the `platformmanifest.bin` file from the platform to register to a platform with Internet access.
+    2. Offline option: use any out-of-band mechanism to copy the `<hostname>-pm.bin` file from the platform to register to a platform with Internet access.
 
-    Independent of the used option, we call the platform with Internet access *Registration Platform* in the following, and we assume that the `platformmanifest.bin` file is stored at the path `<pm_path>`.
+    Independent of the used option, we call the platform with Internet access *Registration Platform* in the following.
 
 5. On the Registration Platform, send the PM to the [registration REST API endpoint of the IRS](https://api.portal.trustedservices.intel.com/content/documentation.html#register-platform).
-    As shown in the linked API documentation, this can be done with a simple `curl` command (after adjusting the path placeholder):
+    As shown in the linked API documentation, this can be done with a simple `curl` command (after adjusting the hostname placeholder):
 
     === "CentOS Stream 9"
 
         ``` { .text }
         curl -i \
-        --data-binary @<pm_path> \
+        --data-binary @<hostname>-pm.bin \
         -X POST "https://api.trustedservices.intel.com/sgx/registration/v1/platform" \
         -H "Content-Type: application/octet-stream"
         ```
 
-    === "Ubuntu 23.10"
+    === "Ubuntu 24.04"
 
         ``` { .text }
         curl -i \
-        --data-binary @<pm_path> \
+        --data-binary @<hostname>-pm.bin \
         -X POST "https://api.trustedservices.intel.com/sgx/registration/v1/platform" \
         -H "Content-Type: application/octet-stream"
         ```
@@ -580,7 +595,7 @@ Detailed steps to use this registration method:
 
         ``` { .text }
         curl -i \
-        --data-binary @<pm_path> \
+        --data-binary @<hostname>-pm.bin \
         -X POST "https://api.trustedservices.intel.com/sgx/registration/v1/platform" \
         -H "Content-Type: application/octet-stream"
         ```
@@ -658,7 +673,7 @@ Detailed steps to use this registration method:
             -use_secure_cert true
         ```
 
-    === "Ubuntu 23.10"
+    === "Ubuntu 24.04"
 
         ``` { .text }
         sudo ./PCKIDRetrievalTool \
@@ -754,14 +769,18 @@ Detailed steps to use this registration method:
         pip3 install -r requirements.txt
         ```
 
-    === "Ubuntu 23.10"
+    === "Ubuntu 24.04"
 
         ``` { .bash }
         sudo apt install -y python3 python3-pip
         git clone https://github.com/intel/SGXDataCenterAttestationPrimitives.git
         cd SGXDataCenterAttestationPrimitives/tools/PccsAdminTool
-        pip3 install -r requirements.txt
+        python3 -m venv venv
+        venv/bin/python -m pip install -r requirements.txt
         ```
+
+        !!! Note
+            When no longer needed, the virtual Python environment can be deactivated by executing `deactivate`.
 
 6. On the Registration Platform, execute the following command to trigger the merge of all individual `.csv` files to a single *input JSON file* using the PCCS Admin Tool (after adjusting the command line options to your environment).
     By default, the result file is called `platform_list.json`.
@@ -772,10 +791,10 @@ Detailed steps to use this registration method:
         python3 ./pccsadmin.py collect -d <platforms_to_register_path>
         ```
 
-    === "Ubuntu 23.10"
+    === "Ubuntu 24.04"
 
         ``` { .bash }
-        python3 ./pccsadmin.py collect -d <platforms_to_register_path>
+        venv/bin/python ./pccsadmin.py collect -d <platforms_to_register_path>
         ```
 
 7. On the Registration Platform, execute the following command to trigger the transmission of the data contained in the input JSON file to the PCS using the PCCS Admin Tool.
@@ -787,10 +806,10 @@ Detailed steps to use this registration method:
         python3 ./pccsadmin.py fetch
         ```
 
-    === "Ubuntu 23.10"
+    === "Ubuntu 24.04"
 
         ``` { .bash }
-        python3 ./pccsadmin.py fetch
+        venv/bin/python ./pccsadmin.py fetch
         ```
 
     By executing this command, the PCCS Admin Tool will also request the verification collateral for all platforms contained in the input JSON file.
@@ -803,13 +822,15 @@ Detailed steps to use this registration method:
     === "CentOS Stream 9"
 
         ``` { .bash }
-        python3 ./pccsadmin.py put -u https://YOUR_PCCS_URL:YOUR_PCCS_PORT
+        python3 ./pccsadmin.py put -u \
+            https://YOUR_PCCS_URL:YOUR_PCCS_PORT/sgx/certification/v4/platformcollateral
         ```
 
-    === "Ubuntu 23.10"
+    === "Ubuntu 24.04"
 
         ``` { .bash }
-        python3 ./pccsadmin.py put -u https://YOUR_PCCS_URL:YOUR_PCCS_PORT
+        venv/bin/python ./pccsadmin.py put -u \
+            https://YOUR_PCCS_URL:YOUR_PCCS_PORT/sgx/certification/v4/platformcollateral
         ```
 
 
@@ -871,14 +892,19 @@ Detailed steps to use this registration method:
         pip3 install -r requirements.txt
         ```
 
-    === "Ubuntu 23.10"
+    === "Ubuntu 24.04"
 
         ``` { .bash }
         sudo apt install -y python3 python3-pip
         git clone https://github.com/intel/SGXDataCenterAttestationPrimitives.git
         cd SGXDataCenterAttestationPrimitives/tools/PccsAdminTool
-        pip3 install -r requirements.txt
+        python3 -m venv venv
+        venv/bin/python -m pip install -r requirements.txt
         ```
+
+        !!! Note
+            When no longer needed, the virtual Python environment can be deactivated by executing `deactivate`.
+
 5. On the Registration Platform, execute the following command to trigger the merge of all individual `.csv` files to a single *input JSON file* using the PCCS Admin Tool (after adjusting the command line options to your environment).
     By default, the result file is called `platform_list.json`.
 
@@ -888,16 +914,13 @@ Detailed steps to use this registration method:
         python3 ./pccsadmin.py collect -d <platforms_to_register_path>
         ```
 
-    === "Ubuntu 23.10"
+    === "Ubuntu 24.04"
 
         ``` { .bash }
-        python3 ./pccsadmin.py collect -d <platforms_to_register_path>
+        venv/bin/python ./pccsadmin.py collect -d <platforms_to_register_path>
         ```
 
-6. On the Registration Platform, execute the following command.
-    The PCCS Admin Tool uses the data contained in the input JSON file to retrieve the corresponding PCK Certificates and TCB Infos from the PCS.
-    The tool generates a cache file for each platform contained in the input JSON file.
-    The cache files are written to an output folder, and the default output folder is `./cache/`.
+6. On the Registration Platform, execute the following command:
 
     === "CentOS Stream 9"
 
@@ -905,15 +928,19 @@ Detailed steps to use this registration method:
         python3 ./pccsadmin.py cache
         ```
 
-    === "Ubuntu 23.10"
+    === "Ubuntu 24.04"
 
         ``` { .bash }
-        python3 ./pccsadmin.py cache
+        venv/bin/python ./pccsadmin.py cache
         ```
+
+    The PCCS Admin Tool uses the data contained in the input JSON file to retrieve the corresponding PCK Certificates and TCB Infos from the PCS.
+    The tool generates a cache file for each platform contained in the input JSON file.
+    By default, each cache file is written to the output folder `./cache/<input JSON filename>/` and has the name `<qe_id>_<pce_id>`.
 
 7. Use any out-of-band mechanism to copy the individual cache file of every registered platform back to the corresponding registered platform.
 8. On each registered platform with a corresponding cache file, the cached data is used automatically during TD Quote Generation.
-    The cache file must pe placed in a folder named `.dcap-qcnl`.
+    The cache file with the name `<qe_id>_<pce_id>` must pe placed in a folder named `.dcap-qcnl` (without using any sub folders).
     The possible locations for Linux are:
 
     - `$AZDCAP_CACHE`
@@ -922,8 +949,11 @@ Detailed steps to use this registration method:
     - `$TMPDIR`
     - `/tmp/`
 
-    For example, to use the last location in the list, the cache file be present inside: `/tmp/.dcap-qcnl`.
-    See the [sgx_default_qcnl.conf](https://github.com/intel/SGXDataCenterAttestationPrimitives/blob/cd27223301e7c2bc80c9c5084ad6f5c2b9d24f5c/QuoteGeneration/qcnl/linux/sgx_default_qcnl.conf#L38) file for more information.
+    For example, to use the last location in the list, the cache file (`<qe_id>_<pce_id>`) must be present inside `/tmp/.dcap-qcnl`.
+    See the [sgx_default_qcnl.conf](https://github.com/intel/SGXDataCenterAttestationPrimitives/blob/727013d98b7ea9187fe4b8aee4750ec614d0942f/QuoteGeneration/qcnl/linux/sgx_default_qcnl.conf#L45) file for more information.
+
+    !!! Note
+        To use `$HOME`, you have to use the home directory of the user executing the QGS.
 
 
 #### Troubleshooting

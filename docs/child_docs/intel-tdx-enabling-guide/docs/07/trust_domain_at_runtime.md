@@ -61,10 +61,10 @@ Steps:
         --8<-- "docs/code/sgx_repo_setup.sh:rhel_9_4_kvm"
         ```
 
-    === "Ubuntu 23.10"
+    === "Ubuntu 24.04"
 
         ```
-        --8<-- "docs/code/sgx_repo_setup.sh:ubuntu_23_10"
+        --8<-- "docs/code/sgx_repo_setup.sh:ubuntu_24_04"
         ```
 
     === "openSUSE Leap 15.5 or SUSE Linux Enterprise Server 15-SP5"
@@ -85,7 +85,7 @@ Steps:
         ./test_tdx_attest
         ```
 
-    === "Ubuntu 23.10"
+    === "Ubuntu 24.04"
 
         ``` { .bash }
         sudo apt install -y libtdx-attest libtdx-attest-dev
@@ -147,7 +147,7 @@ Steps:
 
         Example command:
         ``` { .bash }
-        virt-copy-out -a ~/tdx/guest-tools/image/tdx-guest-ubuntu-23.10.qcow2 /opt/intel/tdx-quote-generation-sample/quote.dat ~
+        virt-copy-out -a ~/tdx/guest-tools/image/tdx-guest-ubuntu-24.04.qcow2 /opt/intel/tdx-quote-generation-sample/quote.dat ~
         ```
 
 2. Setup the appropriate Intel SGX package repository for your distribution of choice (if not done during another component installation):
@@ -158,10 +158,10 @@ Steps:
         --8<-- "docs/code/sgx_repo_setup.sh:cent-os-stream-9"
         ```
 
-    === "Ubuntu 23.10"
+    === "Ubuntu 24.04"
 
         ```
-        --8<-- "docs/code/sgx_repo_setup.sh:ubuntu_23_10"
+        --8<-- "docs/code/sgx_repo_setup.sh:ubuntu_24_04"
         ```
 
     === "openSUSE Leap 15.5 or SUSE Linux Enterprise Server 15-SP5"
@@ -184,7 +184,7 @@ Steps:
         ./app -quote ~/quote.dat
         ```
 
-    === "Ubuntu 23.10"
+    === "Ubuntu 24.04"
 
         ``` { .bash }
         sudo apt install -y libsgx-enclave-common-dev libsgx-dcap-quote-verify-dev libsgx-dcap-default-qpl-dev
