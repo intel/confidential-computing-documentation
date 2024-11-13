@@ -5,6 +5,7 @@ SPDX-License-Identifier: CC-BY-4.0
 <!-- markdownlint-disable-next-line MD041 -->
 *[ACM]: Authenticated Code Module
 *[CA]: Certificate Authority
+*[CoCo]: Confidential Containers
 *[CSP]: Cloud Service Provider
 *[CSPs]: Cloud Service Providers
 *[DCAP]: Datacenter Attestation Primitives
@@ -18,9 +19,11 @@ SPDX-License-Identifier: CC-BY-4.0
 *[Intel SGX]: Intel® Software Guards Extensions
 *[Intel TME-MK]: Intel® Total Memory Encryption – Multi-Key
 *[Intel TDX]: Intel® Trust Domain Extensions
+*[Intel® TDX]: Intel® Trust Domain Extensions
 *[IPU]: Intel Platform Update
 *[IRS]: Intel® SGX and Intel® TDX Registration Service for Scalable Platforms
 *[ISV]: Independent Software Vendor
+*[KBS]: Key Broker Service
 *[MPA]: Multi-package Registration Agent
 *[MSR]: model specific register
 *[PCK]: Provisioning Certification Key

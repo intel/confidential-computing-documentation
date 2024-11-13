@@ -1,0 +1,14 @@
+INHERIT: ../../mkdocs_base.yml
+
+site_name: Intel Confidential Containers Guide
+
+edit_uri: edit/main/docs/child_docs/intel-confidential-containers-guide
+watch:
+  - includes
+nav:
+  - Introduction: 01/introduction.md
+  - Infrastructure Setup: 02/infrastructure_setup.md
+  - Demo Workload Deployment: 03/demo_workload_deployment.md
+  - Troubleshooting: 04/troubleshooting.md
+not_in_nav: |
+  misc/notices_and_disclaimers.md

@@ -5,6 +5,7 @@ The parsed version of this documentation is reachable at [https://cc-enabling.tr
 At the moment, sources for the following documentation is contained in this repository:
 
 - Intel® Trust Domain Extensions Enabling Guide
+- Intel Confidential Containers Guide
 
 In the following, we explore details about contributing to our documentation.
 
@@ -136,6 +137,18 @@ Process:
         -v ${PWD}:/docs \
         intel/cc-docu \
         -f docs/child_docs/intel-tdx-enabling-guide/mkdocs.yml
+        ```
+
+    - Intel Confidential Containers Guide:
+
+        ``` {.bash}
+        docker run --rm -i \
+        --env LOCAL_DEPLOYMENT=true \
+        -p 8000:8000 \
+        --name cc-docu \
+        -v ${PWD}:/docs \
+        intel/cc-docu \
+        -f docs/child_docs/intel-confidential-containers-guide/mkdocs.yml
         ```
 
 - Open the preview of the documentation in your browser.

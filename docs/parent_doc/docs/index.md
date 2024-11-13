@@ -31,6 +31,10 @@ Detailed instructions on how to contribute, including guidelines for submitting 
 
     This guide provides a distilled set of instructions for integrating, deploying, and using Intel TDX.
 
+- [:octicons-arrow-right-24: **Intel Confidential Containers Guide**](intel-confidential-containers-guide/01/introduction/index.html)
+
+    This guide provides a detailed set of instructions for configuring Confidential Containers operator to deploy applications with Kubernetes in Intel TDX-protected virtual machines, and how to attest these using the Confidential Containers Trustee project.
+
 </div>
 
 
