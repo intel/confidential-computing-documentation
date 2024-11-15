@@ -3,9 +3,9 @@
 
 FROM squidfunk/mkdocs-material:9.5.27
 
-WORKDIR /tmp
+WORKDIR /docs
 
-COPY requirements.txt /tmp/requirements.txt
+COPY requirements.txt /docs/requirements.txt
 
 # Install additional MkDocs plugins
 RUN pip install -r requirements.txt

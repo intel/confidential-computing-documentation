@@ -113,7 +113,7 @@ Process:
 - With your favorite terminal, navigate to the folder containing the local clone of your fork (see step 2 of Section 2.2.2).
 - In your favorite terminal, execute the following to build the container of the local documentation server:
 
-    `docker build -t intel/cc-docu -f build/Dockerfile .`
+    `docker build -t intel/cc-docu -f build/Dockerfile build`
 - Depending on the documentation you want to start, use one of the following commands in your favorite terminal:
     - Parent documentation:
 
