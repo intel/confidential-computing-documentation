@@ -208,7 +208,7 @@ Steps:
         This can be done with the following command:
 
         ``` { .bash }
-        sed -i 's/^\(\s*\)volumes:/\1  env:\n\1    - name: https_proxy\n\1      value: "$https_proxy"\n\1volumes:/' base/deployment.yaml
+        sed -i "s|^\(\s*\)volumes:|\1  env:\n\1    - name: https_proxy\n\1      value: \"$https_proxy\"\n\1volumes:|" base/deployment.yaml
         ```
 
 3. Deploy Key Broker Service:
