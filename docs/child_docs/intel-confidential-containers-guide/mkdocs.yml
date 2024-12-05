@@ -2,7 +2,7 @@ INHERIT: ../../mkdocs_base.yml
 
 site_name: Intel Confidential Containers Guide
 
-edit_uri: edit/main/docs/child_docs/intel-confidential-containers-guide
+edit_uri: edit/main/docs/child_docs/intel-confidential-containers-guide/docs/
 watch:
   - includes
 nav:
