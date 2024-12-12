@@ -11,6 +11,8 @@ SPDX-License-Identifier: CC-BY-4.0
 
 This section provides instructions on troubleshooting common issues that may arise during the deployment of workload applications in a Kubernetes cluster, protected with Intel TDX and verified using attestation.
 
+If the below guide does not resolve your issue, refer to [Confidential Containers Troubleshooting Guide](https://confidentialcontainers.org/docs/troubleshooting/) for more information.
+
 
 ## Pods Failed to Start
 
@@ -20,7 +22,7 @@ Such a problem might occur when containerd's plugin (Nydus Snapshotter) failed t
 To see if your pod is affected by this issue, run the following command:
 
 ``` { .bash }
-kubectl describe pod nginx-td-attestation
+kubectl describe pod <pod name>
 ```
 
 An error with containerd's plugin (Nydus Snapshotter) will be indicated by the following error message:
@@ -31,8 +33,29 @@ failed to create containerd container: create snapshot: missing parent \"k8s.io/
 
 To resolve the issue, try the following procedure:
 
-- Uninstall Confidential Containers Operator as described in the [uninstall Confidential Containers Operator](../02/infrastructure_setup.md#uninstall-confidential-containers-operator) section.
-- Remove all data collected by containerd's plugin (Nydus Snapshotter):
+1. Remove your pod:
+
+    ``` { .bash }
+    kubectl delete pod <pod name>
+    ```
+
+2. Clear the Kubernetes images cache:
+
+    ``` { .bash }
+    # Remove cache for the image causing problems
+    sudo crictl rmi <image name with tag>
+    # Remove all unused cached images
+    sudo crictl rmi --prune
+    ```
+
+3. Re-deploy your pod:
+
+    ``` { .bash }
+    kubectl apply -f <pod yaml>
+    ```
+
+4. If the problem persists, uninstall Confidential Containers Operator as described in the [uninstall Confidential Containers Operator](../02/infrastructure_setup.md#uninstall-confidential-containers-operator) section.
+5. Remove all data collected by containerd's plugin (Nydus Snapshotter):
 
     ``` { .bash }
     sudo ctr -n k8s.io images rm $(sudo ctr -n k8s.io images ls -q)
@@ -40,8 +63,8 @@ To resolve the issue, try the following procedure:
     sudo ctr -n k8s.io snapshots rm $(sudo ctr -n k8s.io snapshots ls | awk 'NR>1 {print $1}')
     ```
 
-- Re-install Confidential Containers Operator using the instructions provided in the [install Confidential Containers Operator](../02/infrastructure_setup.md#install-confidential-containers-operator) section.
-- Re-deploy your workloads.
+6. Re-install Confidential Containers Operator using the instructions provided in the [install Confidential Containers Operator](../02/infrastructure_setup.md#install-confidential-containers-operator) section.
+7. Re-deploy your pod.
 
 
 ## Attestation Failure
@@ -111,7 +134,7 @@ In case of attestation failure, follow the steps below to troubleshoot the issue
 - Check KBS logs for any errors:
 
     ``` { .bash }
-    kubectl logs pod/kbs-85b8548d76-k7pcj -n coco-tenant
+    kubectl logs deploy/kbs -n coco-tenant
     ```
 
     An `HTTP 400 Bad Request` error might suggest that platform is not registered correctly.
