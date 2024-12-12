@@ -86,7 +86,7 @@ Steps:
 3. Deploy the Confidential Containers operator:
 
     ``` { .bash }
-    kubectl apply -k github.com/confidential-containers/operator/config/release?ref=$OPERATOR_RELEASE_VERSION
+    kubectl apply -k "github.com/confidential-containers/operator/config/release?ref=$OPERATOR_RELEASE_VERSION"
     ```
 
 4. Create Confidential Containers related runtime classes:
@@ -94,7 +94,7 @@ Steps:
     === "no proxy"
 
          ``` { .bash }
-         kubectl apply -k github.com/confidential-containers/operator/config/samples/ccruntime/default?ref=$OPERATOR_RELEASE_VERSION
+         kubectl apply -k "github.com/confidential-containers/operator/config/samples/ccruntime/default?ref=$OPERATOR_RELEASE_VERSION"
          ```
 
     === "with proxy"
@@ -277,11 +277,11 @@ After [uninstalling Key Broker Service](#uninstall-key-broker-service), follow [
 2. Delete Confidential Containers-related runtime classes:
 
     ``` { .bash }
-    kubectl delete -k github.com/confidential-containers/operator/config/samples/ccruntime/default?ref=$OPERATOR_RELEASE_VERSION
+    kubectl delete -k "github.com/confidential-containers/operator/config/samples/ccruntime/default?ref=$OPERATOR_RELEASE_VERSION"
     ```
 
 3. Delete the Confidential Containers operator:
 
     ``` { .bash }
-    kubectl delete -k github.com/confidential-containers/operator/config/release?ref=$OPERATOR_RELEASE_VERSION
+    kubectl delete -k "github.com/confidential-containers/operator/config/release?ref=$OPERATOR_RELEASE_VERSION"
     ```
