@@ -94,13 +94,13 @@ Steps:
 
 4. Create Confidential Containers related runtime classes:
 
-    === "no proxy"
+    === ":gear: no proxy"
 
          ``` { .bash }
          kubectl apply -k "github.com/confidential-containers/operator/config/samples/ccruntime/default?ref=$OPERATOR_RELEASE_VERSION"
          ```
 
-    === "with proxy"
+    === ":gear: with proxy"
 
          Set the following environmental variables:
 
@@ -190,7 +190,7 @@ Steps:
 
 2. Configure Key Broker Service according to the used attestation service variant:
 
-    === "Intel Trust Authority"
+    === ":gear: Intel Trust Authority"
 
          - To configure the Key Broker Services to use Intel Trust Authority as an attestation service, set the environment variable `DEPLOYMENT_DIR` as follows:
 
@@ -211,7 +211,7 @@ Steps:
              sed -i "s|^\(\s*\)volumes:|\1  env:\n\1    - name: https_proxy\n\1      value: \"$https_proxy\"\n\1volumes:|" base/deployment.yaml
              ```
 
-    === "Intel DCAP"
+    === ":gear: Intel DCAP"
 
          - To configure the Key Broker Services to use Intel DCAP as an attestation service, set the environment variable `DEPLOYMENT_DIR` as follows:
 
@@ -279,13 +279,13 @@ Depending on what attestation service you have used, you can uninstall the Key B
 
 1. Set `DEPLOYMENT_DIR` variable depending on the attestation service used during deployment:
 
-    === "Intel Trust Authority"
+    === ":gear: Intel Trust Authority"
 
          ``` { .bash }
          export DEPLOYMENT_DIR=ita
          ```
 
-    === "Intel DCAP"
+    === ":gear: Intel DCAP"
 
          ``` { .bash }
          export DEPLOYMENT_DIR=custom_pccs
