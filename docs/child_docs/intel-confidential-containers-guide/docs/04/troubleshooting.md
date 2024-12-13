@@ -107,7 +107,7 @@ To identify if you encounter an attestation failure, follow the steps below:
 
 In case of attestation failure, follow the steps below to troubleshoot the issue:
 
-- Check if the Intel® Trust Authority API key is correct and KBS was deployed with this value:
+- If you have configured KBS with Intel® Trust Authority, check that API key is correct and KBS was deployed with this value:
 
     ``` { .bash }
     kubectl describe configmap kbs-config -n coco-tenant | grep -i api_key

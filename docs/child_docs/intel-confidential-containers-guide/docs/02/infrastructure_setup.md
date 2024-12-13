@@ -26,7 +26,7 @@ In detail, we cover the following tasks:
 3. [Install Attestation Components](#install-attestation-components)
 
     We discuss how to deploy attestation components that ensure that the pods are running the expected workloads, that the pods are protected by Intel TDX on a genuine Intel platform, that the platform is patched to a certain level, and that certain other security relevant information is as expected.
-    As an example, we show how to integrate Intel® Trust Authority capabilities into the Confidential Containers Key Broker Service (KBS).
+    As an example, we show how to integrate different attestation services into the Confidential Containers Key Broker Service (KBS): Intel® Trust Authority and an Intel® DCAP-based attestation service.
 
 4. [Cleanup](#cleanup)
 
@@ -35,7 +35,7 @@ In detail, we cover the following tasks:
 
 ## Prerequisites
 
-This section describes the prerequisites that we assume for the following steps regarding installed software and access to an Intel Trust Authority API Key.
+This section describes the prerequisites that we assume for the following steps regarding installed software and optionally access to an Intel Trust Authority API Key.
 
 
 ### Installed Software
@@ -54,6 +54,9 @@ Ensure that your infrastructure meets the following requirements:
 
 
 ### Intel Trust Authority API Key
+
+!!! note
+    This is optional step only if you want to use Intel Trust Authority as an attestation service.
 
 To enable remote attestation of applications as explained in the following chapter, you need to have access to an Intel Trust Authority API Key (later referred to as `ITA_API_KEY`).
 
@@ -170,8 +173,10 @@ Steps:
 ## Install Attestation Components
 
 In this section, we explore how to deploy attestation components that ensure that the pods are running the expected workloads, that the pods are protected by Intel TDX on a genuine Intel platform, that the platform is patched to a certain level, and that certain other security relevant information is as expected.
-As an example, we show how to integrate Intel® Trust Authority capabilities into the Confidential Containers Key Broker Service (KBS).
-Note that the Confidential Containers KBS also works with other verification backends, e.g., [Intel DCAP](https://github.com/intel/SGXDataCenterAttestationPrimitives).
+As an example, we show how to integrate different attestation services into the KBS, specifically:
+
+- [Intel® Trust Authority](https://www.intel.com/content/www/us/en/security/trust-authority.html)
+- [Intel® DCAP-based attestation service](https://github.com/intel/SGXDataCenterAttestationPrimitives)
 
 Steps:
 
@@ -183,19 +188,29 @@ Steps:
     cd trustee/kbs/config/kubernetes/
     ```
 
-2. Configure Key Broker Service ([KBS](https://github.com/confidential-containers/trustee/tree/v0.10.1/kbs)):
+2. Configure Key Broker Service according to the used attestation service variant:
 
-    - To configure the Key Broker Services to use Intel Trust Authority as an attestation service, set the environment variable `DEPLOYMENT_DIR` to `ita`:
+    === "Intel Trust Authority"
 
-        ``` { .bash }
-        export DEPLOYMENT_DIR=ita
-        ```
+         - To configure the Key Broker Services to use Intel Trust Authority as an attestation service, set the environment variable `DEPLOYMENT_DIR` as follows:
 
-    - Set your Intel Trust Authority (ITA) API Key in KBS configuration:
+             ``` { .bash }
+             export DEPLOYMENT_DIR=ita
+             ```
 
-        ``` { .bash }
-        sed -i 's/api_key =.*/api_key = "'${ITA_API_KEY}'"/g' $DEPLOYMENT_DIR/kbs-config.toml
-        ```
+         - Set your Intel Trust Authority API Key in KBS configuration:
+
+             ``` { .bash }
+             sed -i 's/api_key =.*/api_key = "'${ITA_API_KEY}'"/g' $DEPLOYMENT_DIR/kbs-config.toml
+             ```
+
+    === "Intel DCAP"
+
+         - To configure the Key Broker Services to use Intel DCAP as an attestation service, set the environment variable `DEPLOYMENT_DIR` as follows:
+
+             ``` { .bash }
+             export DEPLOYMENT_DIR=custom_pccs
+             ```
 
     - Update your secret key that is required during deployment:
 
@@ -261,9 +276,27 @@ After [uninstalling Key Broker Service](#uninstall-key-broker-service), follow [
 
 ### Uninstall Key Broker Service
 
-  ``` { .bash }
-  kubectl delete -k "$DEPLOYMENT_DIR"
-  ```
+Depending on what attestation service you have used, you can uninstall the Key Broker Service by following the steps below:
+
+1. Set `DEPLOYMENT_DIR` variable depending on the attestation service used during deployment:
+
+    === "Intel Trust Authority"
+
+         ``` { .bash }
+         export DEPLOYMENT_DIR=ita
+         ```
+
+    === "Intel DCAP"
+
+         ``` { .bash }
+         export DEPLOYMENT_DIR=custom_pccs
+         ```
+
+2. Delete the Key Broker Service:
+
+    ``` { .bash }
+    kubectl delete -k "$DEPLOYMENT_DIR"
+    ```
 
 
 ### Uninstall Confidential Containers Operator

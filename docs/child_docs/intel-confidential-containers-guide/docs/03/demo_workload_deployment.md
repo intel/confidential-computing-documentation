@@ -14,7 +14,7 @@ In this chapter, we will present how workloads can be deployed as a Kubernetes p
 1. [Regular Kubernetes pod](#regular-kubernetes-pod).
 2. [Pod isolated by Kata Containers](#pod-isolated-by-kata-containers).
 3. [Pod isolated by Kata Containers and protected by Intel TDX](#pod-isolated-by-kata-containers-and-protected-by-intel-tdx).
-4. [Pod isolated by Kata Containers, protected with Intel TDX, and Quote verified using Intel Trust Authority](#pod-isolated-by-kata-containers-protected-with-intel-tdx-and-quote-verified-using-intel-trust-authority).
+4. [Pod isolated by Kata Containers, protected with Intel TDX, and Quote verified using a KBS with an attestation service](#pod-isolated-by-kata-containers-protected-with-intel-tdx-and-quote-verified-using-a-kbs-with-an-attestation-service).
 
 For now, we use nginx as a workload example.
 Further workloads might be added later.
@@ -155,9 +155,9 @@ To isolate nginx using a Kata Container and to protect it using Intel TDX, perfo
     In case the pods are not in `Running` state, refer to the [Troubleshooting](../04/troubleshooting.md#pods-failed-to-start) section.
 
 
-### Pod Isolated by Kata Containers, Protected with Intel TDX, and Quote Verified using Intel Trust Authority
+### Pod Isolated by Kata Containers, Protected with Intel TDX, and Quote Verified using a KBS with an attestation service
 
-Finally, we explore how to isolate nginx using Kata Containers, how to protect nginx using Intel TDX, and how to verify the nginx deployment using attestation - for which we use the Intel® Trust Authority integration into the Confidential Containers KBS.
+Finally, we explore how to isolate nginx using Kata Containers, how to protect nginx using Intel TDX, and how to verify the nginx deployment using attestation - for which we use the attestation service integration into the Confidential Containers KBS.
 
 To deploy and verify a protected nginx, follow the steps below:
 
