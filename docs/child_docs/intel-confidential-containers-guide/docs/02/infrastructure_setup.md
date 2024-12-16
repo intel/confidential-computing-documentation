@@ -204,6 +204,13 @@ Steps:
              sed -i 's/api_key =.*/api_key = "'${ITA_API_KEY}'"/g' $DEPLOYMENT_DIR/kbs-config.toml
              ```
 
+         - If your network requires the usage of a proxy to access the Intel® Trust Authority service, you may need to set the `HTTPS_PROXY` environment variable in KBS deployment.
+           This can be done with the following command:
+
+             ``` { .bash }
+             sed -i "s|^\(\s*\)volumes:|\1  env:\n\1    - name: https_proxy\n\1      value: \"$https_proxy\"\n\1volumes:|" base/deployment.yaml
+             ```
+
     === "Intel DCAP"
 
          - To configure the Key Broker Services to use Intel DCAP as an attestation service, set the environment variable `DEPLOYMENT_DIR` as follows:
@@ -212,21 +219,13 @@ Steps:
              export DEPLOYMENT_DIR=custom_pccs
              ```
 
-    - Update your secret key that is required during deployment:
+3. Update your secret key that is required during deployment:
 
-        ``` { .bash }
-        echo "This is my super secret" > overlays/$(uname -m)/key.bin
-        ```
+    ``` { .bash }
+    echo "This is my super secret" > overlays/$(uname -m)/key.bin
+    ```
 
-    ??? note "Configure KBS behind a proxy"
-        If your network requires the usage of a proxy to access the Intel® Trust Authority service, you may need to set the `HTTPS_PROXY` environment variable in KBS deployment.
-        This can be done with the following command:
-
-        ``` { .bash }
-        sed -i "s|^\(\s*\)volumes:|\1  env:\n\1    - name: https_proxy\n\1      value: \"$https_proxy\"\n\1volumes:|" base/deployment.yaml
-        ```
-
-3. Deploy Key Broker Service:
+4. Deploy Key Broker Service:
 
     ``` { .bash }
     ./deploy-kbs.sh
@@ -245,7 +244,7 @@ Steps:
     kbs-5f4696986b-64ljx   1/1     Running   0          12s
     ```
 
-4. Retrieve `KBS_ADDRESS` for future use in pod's yaml file:
+5. Retrieve `KBS_ADDRESS` for future use in pod's yaml file:
 
     ``` { .bash }
     export KBS_ADDRESS=http://$(kubectl get nodes -o jsonpath='{.items[0].status.addresses[0].address}'):$(kubectl get svc kbs -n coco-tenant -o jsonpath='{.spec.ports[0].nodePort}')
