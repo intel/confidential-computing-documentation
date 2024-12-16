@@ -161,16 +161,9 @@ Finally, we explore how to isolate nginx using Kata Containers, how to protect n
 
 To deploy and verify a protected nginx, follow the steps below:
 
-- Set the KBS address to be used in pod's yaml file:
-
-    ``` { .bash }
-    export KBS_ADDRESS=http://$(kubectl get nodes -o jsonpath='{.items[0].status.addresses[0].address}'):$(kubectl get svc kbs -n coco-tenant -o jsonpath='{.spec.ports[0].nodePort}')
-    ```
-
 - Create pod's yaml file `nginx-td-attestation.yaml` for this setup:
 
-    ``` { .bash }
-    cat <<EOF > nginx-td-attestation.yaml
+    ```yaml
     apiVersion: v1
     kind: Pod
     metadata:
@@ -192,7 +185,6 @@ To deploy and verify a protected nginx, follow the steps below:
           image: nginx:1.27.0
           ports:
             - containerPort: 80
-    EOF
     ```
 
     Compared to the last security level, the differences in the pod configuration are:
@@ -206,11 +198,16 @@ To deploy and verify a protected nginx, follow the steps below:
     - [Kata Containers kernel parameters](https://github.com/kata-containers/kata-containers/blob/main/docs/how-to/how-to-set-sandbox-config-kata.md#hypervisor-options)
     - [Key Broker Service parameters](https://github.com/confidential-containers/trustee/blob/main/kbs/docs/initdata.md#initdata-specification)
 
-
-- Start nginx:
+- Set the KBS address to be used during deployment:
 
     ``` { .bash }
-    kubectl apply -f nginx-td-attestation.yaml
+    export KBS_ADDRESS=http://$(kubectl get nodes -o jsonpath='{.items[0].status.addresses[0].address}'):$(kubectl get svc kbs -n coco-tenant -o jsonpath='{.spec.ports[0].nodePort}')
+    ```
+
+- Start nginx using the exported `KBS_ADDRESS`:
+
+    ``` { .bash }
+    envsubst < nginx-td-attestation.yaml | kubectl apply -f -
     ```
 
 - Check the pod status:

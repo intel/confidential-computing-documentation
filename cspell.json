@@ -24,6 +24,7 @@
         "distros",
         "docu",
         "epel",
+        "envsubst",
         "extrahead",
         "fidencio",
         "figcaption",
