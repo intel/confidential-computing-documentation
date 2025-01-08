@@ -92,7 +92,19 @@ Steps:
     kubectl apply -k "github.com/confidential-containers/operator/config/release?ref=$OPERATOR_RELEASE_VERSION"
     ```
 
-4. Create Confidential Containers related runtime classes:
+4. Wait until the deployment is available:
+
+    ``` { .bash }
+    kubectl wait -n confidential-containers-system --for=condition=available --timeout=5m deployment/cc-operator-controller-manager
+    ```
+
+    Expected output:
+
+    ``` { .text }
+    deployment.apps/cc-operator-controller-manager condition met
+    ```
+
+5. Create Confidential Containers related runtime classes:
 
     === ":gear: no proxy"
 
@@ -137,7 +149,7 @@ Steps:
          rm -rf /tmp/proxy-overlay
          ```
 
-5. Wait until Confidential Containers operator pods are ready:
+6. Wait until Confidential Containers operator pods are ready:
 
     ``` { .bash }
     kubectl -n confidential-containers-system wait --for=condition=Ready pods --all --timeout=5m
@@ -151,7 +163,7 @@ Steps:
      pod/cc-operator-pre-install-daemon-9xvzf condition met
      ```
 
-6. Check that the Confidential Containers runtime classes exist:
+7. Check that the Confidential Containers runtime classes exist:
 
     ``` { .bash }
     kubectl get runtimeclass | grep -i kata
