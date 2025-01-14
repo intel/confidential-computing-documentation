@@ -255,3 +255,8 @@ kubectl delete -f nginx-vm.yaml
 kubectl delete -f nginx-td.yaml
 kubectl delete -f nginx-td-attestation.yaml
 ```
+
+
+## Additional features
+
+Refer to the [features section](https://confidentialcontainers.org/docs/features/) in official Confidential Containers guide for additional features such as authenticated registries, encrypted images, and more.
