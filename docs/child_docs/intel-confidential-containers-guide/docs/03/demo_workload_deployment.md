@@ -122,6 +122,8 @@ To isolate nginx using a Kata Container and to protect it using Intel TDX, perfo
     kind: Pod
     metadata:
       name: nginx-td
+      annotations:
+        io.containerd.cri.runtime-handler: kata-qemu-tdx
     spec:
       runtimeClassName: kata-qemu-tdx
       containers:
@@ -169,6 +171,7 @@ To deploy and verify a protected nginx, follow the steps below:
     metadata:
       name: nginx-td-attestation
       annotations:
+        io.containerd.cri.runtime-handler: kata-qemu-tdx
         io.katacontainers.config.hypervisor.kernel_params: "agent.guest_components_rest_api=all agent.aa_kbc_params=cc_kbc::${KBS_ADDRESS}"
     spec:
       runtimeClassName: kata-qemu-tdx

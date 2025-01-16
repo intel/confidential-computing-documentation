@@ -42,7 +42,7 @@ This section describes the prerequisites that we assume for the following steps 
 
 Ensure that your infrastructure meets the following requirements:
 
-- [Kubernetes](https://kubernetes.io/) - 1.30.3 or newer.
+- [Kubernetes](https://kubernetes.io/) - 1.29.5 or newer.
 - Kubernetes cluster with at least one node - serving as master and worker node.
 - [containerd](https://containerd.io/) 1.7.12 or newer.
 - Worker nodes configured on [registered](../../../intel-tdx-enabling-guide/02/infrastructure_setup/#platform-registration) Intel platforms with Intel TDX Module version 1.5.
