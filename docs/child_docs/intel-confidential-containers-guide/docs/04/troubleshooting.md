@@ -60,7 +60,7 @@ To resolve the issue, try the following procedure:
     ``` { .bash }
     sudo ctr -n k8s.io images rm $(sudo ctr -n k8s.io images ls -q)
     sudo ctr -n k8s.io content rm $(sudo ctr -n k8s.io content ls -q)
-    sudo ctr -n k8s.io snapshots rm $(sudo ctr -n k8s.io snapshots ls | awk 'NR>1 {print $1}')
+    sudo ctr -n k8s.io snapshots rm $(sudo ctr -n k8s.io snapshots --snapshotter nydus ls | awk 'NR>1 {print $1}')
     ```
 
 6. Re-install Confidential Containers Operator using the instructions provided in the [install Confidential Containers Operator](../02/infrastructure_setup.md#install-confidential-containers-operator) section.
