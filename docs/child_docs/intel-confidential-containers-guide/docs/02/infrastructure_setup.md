@@ -80,10 +80,10 @@ Steps:
 
 2. Set the environment variable `OPERATOR_RELEASE_VERSION` to the version of the Confidential Containers operator that you want to use.
     All available versions can be found [on the corresponding GitHub page](https://github.com/confidential-containers/operator/tags).
-    Note that we tested this guide with the version `v0.10.0`.
+    Note that we tested this guide with the version `v0.11.0`.
 
      ``` { .bash }
-     export OPERATOR_RELEASE_VERSION=v0.10.0
+     export OPERATOR_RELEASE_VERSION=v0.11.0
      ```
 
 3. Deploy the Confidential Containers operator:
@@ -315,7 +315,7 @@ Depending on what attestation service you have used, you can uninstall the Key B
 1. Set environment variable `OPERATOR_RELEASE_VERSION` to installed operator version:
 
     ``` { .bash }
-    export OPERATOR_RELEASE_VERSION=v0.10.0
+    export OPERATOR_RELEASE_VERSION=v0.11.0
     ```
 
 2. Delete Confidential Containers-related runtime classes:
