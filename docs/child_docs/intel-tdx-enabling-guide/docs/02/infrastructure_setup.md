@@ -772,11 +772,12 @@ Detailed steps to use this registration method:
     === "Ubuntu 24.04"
 
         ``` { .bash }
-        sudo apt install -y python3 python3-pip
+        sudo apt install -y python3 python3-pip python3-venv
         git clone https://github.com/intel/SGXDataCenterAttestationPrimitives.git
         cd SGXDataCenterAttestationPrimitives/tools/PccsAdminTool
         python3 -m venv venv
-        venv/bin/python -m pip install -r requirements.txt
+        source ./venv/bin/activate
+        pip install -r requirements.txt
         ```
 
         !!! Note
