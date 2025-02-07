@@ -1,19 +1,15 @@
 # --8<-- [start:cent-os-stream-9]
 sudo dnf install -y wget yum-utils
-sudo mkdir /opt/intel
-cd /opt/intel
-sudo wget https://download.01.org/intel-sgx/latest/dcap-latest/linux/distro/centos-stream9/sgx_rpm_local_repo.tgz
-sudo tar xvf sgx_rpm_local_repo.tgz
-sudo yum-config-manager --add-repo file:///opt/intel/sgx_rpm_local_repo
+wget https://download.01.org/intel-sgx/sgx-dcap/1.21/linux/distro/centos-stream9/sgx_rpm_local_repo.tgz
+tar xvf sgx_rpm_local_repo.tgz
+yum-config-manager --add-repo `pwd`/sgx_rpm_local_repo
 # --8<-- [end:cent-os-stream-9]
 
 # --8<-- [start:rhel_9_4_kvm]
 sudo dnf install -y yum-utils wget
-sudo mkdir /opt/intel
-cd /opt/intel
-sudo wget https://download.01.org/intel-sgx/latest/dcap-latest/linux/distro/rhel9.2-server/sgx_rpm_local_repo.tgz
-sudo tar xvf sgx_rpm_local_repo.tgz
-sudo yum-config-manager --add-repo file:///opt/intel/sgx_rpm_local_repo
+wget https://download.01.org/intel-sgx/sgx-dcap/1.21/linux/distro/rhel9.2-server/sgx_rpm_local_repo.tgz
+tar xvf sgx_rpm_local_repo.tgz
+sudo yum-config-manager --add-repo `pwd`/sgx_rpm_local_repo
 # --8<-- [end:rhel_9_4_kvm]
 
 # --8<-- [start:ubuntu_23_10]
