@@ -128,8 +128,8 @@ In the following, we provide details of the first alternative.
     === "CentOS Stream 9"
 
         ``` { .bash }
-        curl -fsSL https://rpm.nodesource.com/setup_20.x | sudo -E bash -
-        sudo yum install -y nodejs-20.11.1-1nodesource
+        curl -fsSL https://rpm.nodesource.com/setup_21.x | sudo -E bash -
+        sudo yum install -y nodejs-2:21.5.0-1nodesource
         sudo yum install -y --nogpgcheck sgx-dcap-pccs
         sudo -u pccs /opt/intel/sgx-dcap-pccs/install.sh
         sudo systemctl start pccs
@@ -187,6 +187,8 @@ In the following, we provide details of the first alternative.
         sudo systemctl restart pccs
         ```
 
+!!! note
+    If you encounter the error “Failed to locate executable /usr/bin/node: Permission denied,” update the configuration in `/etc/selinux/config` to `SELINUX=disabled`.
 
 ### Platform Registration
 
@@ -441,7 +443,7 @@ Detailed steps to use this registration method:
             ``` { .text }
             sudo dnf install -y wget
             wget -O PCKIDRetrievalTool.tar.gz \
-                https://download.01.org/intel-sgx/latest/dcap-latest/linux/distro/centos-stream9/PCKIDRetrievalTool_v1.22.100.3.tar.gz
+                https://download.01.org/intel-sgx/sgx-dcap/1.21/linux/distro/centos-stream9/PCKIDRetrievalTool_v1.21.100.3.tar.gz
             mkdir -p PCKIDRetrievalTool
             tar xvzf PCKIDRetrievalTool.tar.gz \
                 --strip-components=1 \
