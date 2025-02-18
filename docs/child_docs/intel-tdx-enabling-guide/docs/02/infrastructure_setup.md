@@ -81,7 +81,7 @@ Currently, the expiration date is set to 30 days from the time of download, whic
 
 #### Provisioning Certificate Caching Service (PCCS)
 
-Intel provides a reference, open-source implementation of a collateral caching service called Provisioning Certificate Caching Service (PCCS) [via GitHub](https://github.com/intel/SGXDataCenterAttestationPrimitives/tree/dcap_1.21_reproducible/QuoteGeneration/pccs).
+Intel provides a reference, open-source implementation of a collateral caching service called Provisioning Certificate Caching Service (PCCS) [via GitHub](https://github.com/intel/SGXDataCenterAttestationPrimitives/tree/master/QuoteGeneration/pccs).
 There is also a [design guide](https://download.01.org/intel-sgx/latest/dcap-latest/linux/docs/SGX_DCAP_Caching_Service_Design_Guide.pdf) available for parties who want to know more about how Intel's PCCS works or those wanting to write their own collateral caching service.
 
 The PCCS can be installed in multiple ways, among others, as a system service from a distribution repository, as a Docker container somewhere in your network, or even as a Kubernetes pod.
