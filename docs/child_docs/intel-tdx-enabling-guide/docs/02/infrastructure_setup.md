@@ -717,46 +717,52 @@ Requirements of this method:
         Another platform with Internet access must be available.
         This option is usable in an air-gapped environment.
         The platform with Internet access does not need to support Intel TDX.
-
+- A subscription key for the [Intel PCS](https://api.portal.trustedservices.intel.com/provisioning-certification)
 - The [PCK Cert ID Retrieval Tool](https://github.com/intel/SGXDataCenterAttestationPrimitives/tree/master/tools/PCKRetrievalTool) (PCKCIDRT) — a tool to support the retrieval of the PM and other platform information.
 - The [PCCS Admin Tool](https://github.com/intel/SGXDataCenterAttestationPrimitives/tree/master/tools/PccsAdminTool) — a tool to facilitate Indirect Registration, PCK Certificate retrieval, and verification collateral retrieval especially in multi-platform environments.
 
 The basic flow of this registration method:
 
-1. On any central platform in your infrastructure, deploy a [PCCS](#provisioning-certificate-caching-service-pccs).
+1. On any platform, request a new subscription key for the [Intel PCS](https://api.portal.trustedservices.intel.com/provisioning-certification) or retrieve your existing subscription key.
+2. On any central platform in your infrastructure, deploy a [PCCS](#provisioning-certificate-caching-service-pccs).
     The PCCS must be reachable from all platforms to register.
-2. On the host OS of each platform to register, deploy the PCKCIDRT.
-3. On the host OS of each platform to register, use the PCKCIDRT to gather the PM and other platform information into a single file.
-4. Copy the individual files created in step 3 to a single folder on a platform with Internet access.
+3. On the host OS of each platform to register, deploy the PCKCIDRT.
+4. On the host OS of each platform to register, use the PCKCIDRT to gather the PM and other platform information into a single file.
+5. Copy the individual files created in step 3 to a single folder on a platform with Internet access.
 
     1. Online option: the platform with the PCCS has access to the Internet and can be used to hold all the files created in step 3.
     2. Offline option: a separate platform with Internet access must be used to hold all the files created in step 3.
 
     Independent of the used option, we call the platform with Internet access *Registration Platform* in the following.
 
-5. On the Registration Platform, deploy the PCCS Admin Tool.
-6. On the Registration Platform, use the PCCS Admin Tool to merge the files from the individual platforms into a single file.
-7. On the Registration Platform, use the PCCS Admin Tool to send the collected platform information to the PCS.
+6. On the Registration Platform, deploy the PCCS Admin Tool.
+7. On the Registration Platform, use the PCCS Admin Tool to merge the files from the individual platforms into a single file.
+8. On the Registration Platform, use the PCCS Admin Tool to send the collected platform information to the PCS.
     - The PCS forwards the information to the IRS, which generates PCK Certificates, and returns them to the PCS.
     - The PCS returns the PCK Certificates to the PCCS Admin Tool.
     - The PCCS Admin Tool writes all platform PCK Certificates to result file.
     - The PCCS Admin Tool also requests all corresponding verification collateral from PCS and writes this information to the same result file.
-8. Copy the result file to any platform with access to the PCCS — called *PCCS Insertion Platform* in the following.
-9. On the PCCS Insertion Platform, deploy the PCCS Admin Tool.
-10. On the PCCS Insertion Platform, use the PCCS Admin Tool to insert the data from the result file to the PCCS.
+9. Copy the result file to any platform with access to the PCCS — called *PCCS Insertion Platform* in the following.
+10. On the PCCS Insertion Platform, deploy the PCCS Admin Tool.
+11. On the PCCS Insertion Platform, use the PCCS Admin Tool to insert the data from the result file to the PCCS.
 
 Detailed steps to use this registration method:
 
-1. On a central platform in your infrastructure, deploy a [PCCS](#provisioning-certificate-caching-service-pccs) following the setup instructions provided in the [PCCS](#provisioning-certificate-caching-service-pccs) section.
+1. On any platform, request a new subscription key for the [Intel PCS](https://api.portal.trustedservices.intel.com/provisioning-certification) or retrieve your existing subscription key.
+    - If you did not request such a subscription key before, [subscribe](https://api.portal.trustedservices.intel.com/products#product=liv-intel-software-guard-extensions-provisioning-certification-service) to Intel PCS, which requires to log in (or to create an account).
+        Two subscription keys are generated (for key rotation) and both can be used for the following steps.
+    - If you did request such a subscription key before, [retrieve](https://api.portal.trustedservices.intel.com/manage-subscriptions) one of your keys, which requires to log in.
+        You have two subscription keys (for key rotation), and both can be used for the following steps.
+2. On a central platform in your infrastructure, deploy a [PCCS](#provisioning-certificate-caching-service-pccs) following the setup instructions provided in the [PCCS](#provisioning-certificate-caching-service-pccs) section.
     The environment must be configured to allow access from all platforms to register to the PCCS.
 
     1. Online option: the PCCS must run in "LAZY" or "REQ" mode.
     2. Offline option: the PCCS must run in "OFFLINE" mode.
 
-2. On the host OS of each platform to register, deploy the PCKCIDRT following the PCKCIDRT retrieval instructions provided as step 1 in the [On-/offline, manual, single platform Direct Registration](#PCKCIDRT-deployment) section.
-3. On the host OS of each platform to register, gather the PM and other platform information into a comma-delimited `.csv` file following the execution instructions provided as step 2 in the [On-/offline, manual, single platform Direct Registration](#PCKCIDRT-gater-PM) section.
+3. On the host OS of each platform to register, deploy the PCKCIDRT following the PCKCIDRT retrieval instructions provided as step 1 in the [On-/offline, manual, single platform Direct Registration](#PCKCIDRT-deployment) section.
+4. On the host OS of each platform to register, gather the PM and other platform information into a comma-delimited `.csv` file following the execution instructions provided as step 2 in the [On-/offline, manual, single platform Direct Registration](#PCKCIDRT-gater-PM) section.
     This section also provides details about successful execution of the tool and the resulting `.csv` file.
-4. Use any out-of-band mechanism to copy the `.csv` files from each platform to register to a single folder on a platform with Internet access.
+5. Use any out-of-band mechanism to copy the `.csv` files from each platform to register to a single folder on a platform with Internet access.
 
     1. Online option: the platform with the PCCS has access to the Internet and can be used to hold all csv files.
     2. Offline option: a separate platform with Internet access must be used to hold all csv files.
@@ -764,7 +770,7 @@ Detailed steps to use this registration method:
     Independent of the used option, we call the platform with Internet access *Registration Platform* in the following.
     We also assume that all `.csv` files are stored at the path `<platforms_to_register_path>` on this platform.
 
-5. On the Registration Platform, execute the following commands to install prerequisites for the PCCS Admin Tool and download the tool:
+6. On the Registration Platform, execute the following commands to install prerequisites for the PCCS Admin Tool and download the tool:
 
     === "CentOS Stream 9"
 
@@ -789,7 +795,7 @@ Detailed steps to use this registration method:
         !!! Note
             When no longer needed, the virtual Python environment can be deactivated by executing `deactivate`.
 
-6. On the Registration Platform, execute the following command to trigger the merge of all individual `.csv` files to a single *input JSON file* using the PCCS Admin Tool (after adjusting the command line options to your environment).
+7. On the Registration Platform, execute the following command to trigger the merge of all individual `.csv` files to a single *input JSON file* using the PCCS Admin Tool (after adjusting the command line options to your environment).
     By default, the result file is called `platform_list.json`.
 
     === "CentOS Stream 9"
@@ -804,7 +810,8 @@ Detailed steps to use this registration method:
         venv/bin/python ./pccsadmin.py collect -d <platforms_to_register_path>
         ```
 
-7. On the Registration Platform, execute the following command to trigger the transmission of the data contained in the input JSON file to the PCS using the PCCS Admin Tool.
+8. On the Registration Platform, execute the following command to trigger the transmission of the data contained in the input JSON file to the PCS using the PCCS Admin Tool.
+    During execution, enter the PCCS subscription key retrieved in step 1 when asked for `ApiKey for Intel PCS` and answer `n` when asked to remember Intel PCS ApiKey in OS keyring.
     All returned PCK Certificates are stored in the file `platform_collaterals.json`.
 
     === "CentOS Stream 9"
@@ -822,9 +829,9 @@ Detailed steps to use this registration method:
     By executing this command, the PCCS Admin Tool will also request the verification collateral for all platforms contained in the input JSON file.
     The result is also written into the file `platform_collaterals.json`.
 
-8. Use any out-of-band mechanism to copy the `platform_collaterals.json` file to any platform with access to the PCCS — called PCCS Insertion Platform in the following.
-9. If the PCCS Admin Tool is not already installed on the PCCS Insertion Platform, execute the commands described in step 5 to install prerequisites for the PCCS Admin Tool and to download the tool.
-10. On the PCCS Insertion Platform, execute the following command to insert the data from the `platform_collaterals.json` file into the PCCS (after adjusting the command line options to your environment):
+9. Use any out-of-band mechanism to copy the `platform_collaterals.json` file to any platform with access to the PCCS — called PCCS Insertion Platform in the following.
+10. If the PCCS Admin Tool is not already installed on the PCCS Insertion Platform, execute the commands described in step 5 to install prerequisites for the PCCS Admin Tool and to download the tool.
+11. On the PCCS Insertion Platform, execute the following command to insert the data from the `platform_collaterals.json` file into the PCCS (after adjusting the command line options to your environment):
 
     === "CentOS Stream 9"
 
