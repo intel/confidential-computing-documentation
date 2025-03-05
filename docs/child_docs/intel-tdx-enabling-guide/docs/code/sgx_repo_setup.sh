@@ -1,3 +1,13 @@
+# --8<-- [start:pccs-cent-os-stream-9]
+sudo dnf install -y wget yum-utils
+sudo mkdir /opt/intel
+cd /opt/intel
+sudo wget https://download.01.org/intel-sgx/sgx-dcap/1.21/linux/distro/centos-stream9/sgx_rpm_local_repo.tgz -O sgx_rpm_local_repo_1_21.tgz
+sudo mkdir sgx_rpm_local_repo_1_21
+sudo tar xvf sgx_rpm_local_repo_1_21.tgz -C sgx_rpm_local_repo_1_21 --strip-components=1
+sudo yum-config-manager --add-repo file:///opt/intel/sgx_rpm_local_repo_1_21
+# --8<-- [end:pccs-cent-os-stream-9]
+
 # --8<-- [start:cent-os-stream-9]
 sudo dnf install -y wget yum-utils
 sudo mkdir /opt/intel

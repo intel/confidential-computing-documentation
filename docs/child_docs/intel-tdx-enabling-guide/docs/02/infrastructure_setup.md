@@ -101,8 +101,14 @@ In the following, we provide details of the first alternative.
     === "CentOS Stream 9"
 
         ``` { .bash }
-        --8<-- "docs/code/sgx_repo_setup.sh:cent-os-stream-9"
+        --8<-- "docs/code/sgx_repo_setup.sh:pccs-cent-os-stream-9"
         ```
+
+        !!! Note
+            The provided instructions do not configure the newest package repository.
+            This is necessary, because the newest package repository currently does not contain the PCCS package.
+            The package repository added here can be used in parallel to the newest version of the package repository, because CentOS will automatically select the newest package version when a package is found in multiple package repositories.
+            Alternatively, the package repository configured here can be removed after installing PCCS.
 
     === "Ubuntu 24.04"
 
