@@ -38,7 +38,7 @@
     },
     "MD023": true,
     "MD024": {
-        "siblings_only": false
+        "siblings_only": true
     },
     "MD025": {
         "front_matter_title": "^\\s*\"?title\"?\\s*[:=]",
