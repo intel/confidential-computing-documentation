@@ -96,13 +96,6 @@ To check the status of your Intel TDX configuration, you can manually execute th
     sudo rdmsr -f 1:1 0x982
     ```
 
-- Check the maximum number of Intel TME keys.
-  The expected output depends on what is [configured in the BIOS](../04/hardware_setup.md#enable-intel-tdx-in-bios).
-
-    ``` { .text }
-    sudo rdmsr -f 50:36 0x981
-    ```
-
 - Check the Intel SGX and MCHECK status.
   The expected output is `0`.
 
@@ -117,11 +110,25 @@ To check the status of your Intel TDX configuration, you can manually execute th
     sudo rdmsr -f 11:11 0x1401
     ```
 
-- Check the maximum number of Intel TDX keys.
+- Check the maximum number of Intel TME keys available for usage.
   The expected output depends on what is [configured in the BIOS](../04/hardware_setup.md#enable-intel-tdx-in-bios).
 
     ``` { .text }
-    sudo rdmsr -f 63:32 0x87
+    sudo rdmsr -f 50:36 0x981 | awk '{print strtonum("0x"$0)}'
+    ```
+
+- Check the number of activated Intel TME keys.
+  The expected output depends on what is [configured in the BIOS](../04/hardware_setup.md#enable-intel-tdx-in-bios).
+
+    ``` { .text }
+    sudo rdmsr -f 31:0 0x87 | awk '{print strtonum("0x"$0)}'
+    ```
+
+- Check the number of activated Intel TDX keys.
+  The expected output depends on what is [configured in the BIOS](../04/hardware_setup.md#enable-intel-tdx-in-bios).
+
+    ``` { .text }
+    sudo rdmsr -f 63:32 0x87 | awk '{print strtonum("0x"$0)}'
     ```
 
 
