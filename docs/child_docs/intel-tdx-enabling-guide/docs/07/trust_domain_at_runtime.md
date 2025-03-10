@@ -123,6 +123,7 @@ Steps:
 
         !!! note
             SSH access to your TD is necessary for this approach.
+            If the VM is started with sudo privileges, ensure you execute the following command with sudo.
 
         Adjust the following command to your environment and use it to copy the file:
         ``` { .bash }
