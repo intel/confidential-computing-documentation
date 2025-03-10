@@ -486,21 +486,21 @@ Detailed steps to use this registration method:
 
             ``` { .text }
             cd /opt/intel/sgx-pck-id-retrieval-tool
-            sudo ./PCKIDRetrievalTool -f $(hostnamectl --static).csv
+            sudo ./PCKIDRetrievalTool -f host_$(hostnamectl --static).csv
             ```
 
         === "Ubuntu 24.04"
 
             ``` { .text }
             cd /opt/intel/sgx-pck-id-retrieval-tool
-            sudo ./PCKIDRetrievalTool -f $(hostnamectl --static).csv
+            sudo ./PCKIDRetrievalTool -f host_$(hostnamectl --static).csv
             ```
 
         === "openSUSE Leap 15.5 or SUSE Linux Enterprise Server 15-SP5"
 
             ``` { .text }
             cd /opt/intel/sgx-pck-id-retrieval-tool
-            sudo ./PCKIDRetrievalTool -f $(hostnamectl --static).csv
+            sudo ./PCKIDRetrievalTool -f host_$(hostnamectl --static).csv
             ```
 
     2. If retrieved from a standalone package:
@@ -509,21 +509,21 @@ Detailed steps to use this registration method:
 
             ``` { .text }
             cd PCKIDRetrievalTool
-            sudo LD_LIBRARY_PATH=. ./PCKIDRetrievalTool -f $(hostnamectl --static).csv
+            sudo LD_LIBRARY_PATH=. ./PCKIDRetrievalTool -f host_$(hostnamectl --static).csv
             ```
 
         === "Ubuntu 24.04"
 
             ``` { .text }
             cd PCKIDRetrievalTool
-            sudo LD_LIBRARY_PATH=. ./PCKIDRetrievalTool -f $(hostnamectl --static).csv
+            sudo LD_LIBRARY_PATH=. ./PCKIDRetrievalTool -f host_$(hostnamectl --static).csv
             ```
 
         === "openSUSE Leap 15.5 or SUSE Linux Enterprise Server 15-SP5"
 
             ``` { .text }
             cd PCKIDRetrievalTool
-            sudo LD_LIBRARY_PATH=. ./PCKIDRetrievalTool -f $(hostnamectl --static).csv
+            sudo LD_LIBRARY_PATH=. ./PCKIDRetrievalTool -f host_$(hostnamectl --static).csv
             ```
 
     On successful execution of the PCKCIDRT, you'll see output similar to the following:
@@ -554,20 +554,20 @@ Detailed steps to use this registration method:
         ``` { .text }
         sudo dnf config-manager --set-enabled crb
         sudo dnf install -y ocaml-csv
-        sudo bash -c "csvtool col 6 $(hostnamectl --static).csv | xxd -r -p > $(hostnamectl --static)-pm.bin"
+        sudo bash -c "csvtool col 6 host_$(hostnamectl --static).csv | xxd -r -p > host_$(hostnamectl --static)_pm.bin"
         ```
 
     === "Ubuntu 24.04"
 
         ``` { .text }
         sudo apt-get install -y csvtool
-        sudo bash -c "csvtool col 6 $(hostnamectl --static).csv | xxd -r -p > $(hostnamectl --static)-pm.bin"
+        sudo bash -c "csvtool col 6 host_$(hostnamectl --static).csv | xxd -r -p > host_$(hostnamectl --static)_pm.bin"
         ```
     === "openSUSE Leap 15.5 or SUSE Linux Enterprise Server 15-SP5"
 
         ``` { .text }
         sudo zypper install -y ocaml-csv
-        sudo bash -c "csvtool col 6 $(hostnamectl --static).csv | xxd -r -p > $(hostnamectl --static)-pm.bin"
+        sudo bash -c "csvtool col 6 host_$(hostnamectl --static).csv | xxd -r -p > host_$(hostnamectl --static)_pm.bin"
         ```
 
 4. Dependent on the used option of this method:
