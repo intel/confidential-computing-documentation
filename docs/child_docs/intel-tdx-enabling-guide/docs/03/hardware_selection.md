@@ -17,7 +17,10 @@ Please talk to your OEM/ODM provider to receive a platform fulfilling the listed
 
 ## CPU Requirements
 
-To enable Intel TDX, a [5th Gen Intel® Xeon® Scalable Processor](https://www.intel.com/content/www/us/en/products/docs/processors/xeon/5th-gen-xeon-scalable-processors.html) is required.
+To enable Intel TDX, one of the following processor families is required:
+
+- [5th Gen Intel® Xeon® Scalable Processor](https://www.intel.com/content/www/us/en/ark/products/series/236644/5th-gen-intel-xeon-scalable-processors.html)
+- [Intel® Xeon® 6 Processors](https://www.intel.com/content/www/us/en/ark/products/series/240357/intel-xeon-6.html)
 
 
 ## DIMM (i.e., main memory) Requirements
