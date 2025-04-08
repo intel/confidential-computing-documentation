@@ -80,10 +80,10 @@ Steps:
 
 2. Set the environment variable `OPERATOR_RELEASE_VERSION` to the version of the Confidential Containers operator that you want to use.
     All available versions can be found [on the corresponding GitHub page](https://github.com/confidential-containers/operator/tags).
-    Note that we tested this guide with the version `v0.11.0`.
+    Note that we tested this guide with the version `v0.13.0`.
 
      ``` { .bash }
-     export OPERATOR_RELEASE_VERSION=v0.11.0
+     export OPERATOR_RELEASE_VERSION=v0.13.0
      ```
 
 3. Deploy the Confidential Containers operator:
@@ -193,14 +193,22 @@ As an example, we show how to integrate different attestation services into the 
 Steps:
 
 1. Clone the Confidential Containers Trustee repository using the following command.
-    Note that this guide was tested with version v0.10.1, but newer [versions](https://github.com/confidential-containers/trustee/releases) might be available.
+    Note that this guide was tested with version v0.12.0, but newer [versions](https://github.com/confidential-containers/trustee/releases) might be available.
 
     ``` { .bash }
-    git clone -b v0.10.1 https://github.com/confidential-containers/trustee
+    git clone -b v0.12.0 https://github.com/confidential-containers/trustee
     cd trustee/kbs/config/kubernetes/
     ```
 
-2. Configure Key Broker Service according to the used attestation service variant:
+2. Customize image version to be used:
+
+    ``` { .bash }
+    sed -i 's/built-in-as-v0.11.0/built-in-as-v0.12.0/g' base/kustomization.yaml
+    sed -i 's/:built-in-as-v0.10.1//g' ita/kustomization.yaml
+    sed -i 's/ita-as-v0.10.1/ita-as-v0.12.0/g' ita/kustomization.yaml
+    ```
+
+3. Configure Key Broker Service according to the used attestation service variant:
 
     === ":gear: Intel Trust Authority"
 
@@ -231,13 +239,13 @@ Steps:
              export DEPLOYMENT_DIR=custom_pccs
              ```
 
-3. Update your secret key that is required during deployment:
+4. Update your secret key that is required during deployment:
 
     ``` { .bash }
-    echo "This is my super secret" > overlays/$(uname -m)/key.bin
+    echo "This is my super secret" > overlays/key.bin
     ```
 
-4. Deploy Key Broker Service:
+5. Deploy Key Broker Service:
 
     ``` { .bash }
     ./deploy-kbs.sh
@@ -256,7 +264,7 @@ Steps:
     kbs-5f4696986b-64ljx   1/1     Running   0          12s
     ```
 
-5. Retrieve `KBS_ADDRESS` for future use in pod's yaml file:
+6. Retrieve `KBS_ADDRESS` for future use in pod's yaml file:
 
     ``` { .bash }
     export KBS_ADDRESS=http://$(kubectl get nodes -o jsonpath='{.items[0].status.addresses[0].address}'):$(kubectl get svc kbs -n coco-tenant -o jsonpath='{.spec.ports[0].nodePort}')
@@ -315,7 +323,7 @@ Depending on what attestation service you have used, you can uninstall the Key B
 1. Set environment variable `OPERATOR_RELEASE_VERSION` to installed operator version:
 
     ``` { .bash }
-    export OPERATOR_RELEASE_VERSION=v0.11.0
+    export OPERATOR_RELEASE_VERSION=$(kubectl get deployment cc-operator-controller-manager -n confidential-containers-system -o jsonpath="{.spec.template.spec.containers[?(@.name=='manager')].image}" | cut -d: -f2)
     ```
 
 2. Delete Confidential Containers-related runtime classes:
