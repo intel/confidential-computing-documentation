@@ -44,9 +44,10 @@ To start nginx in a regular Kubernetes pod and to verify the cluster setup, perf
     spec:
       containers:
         - name: nginx
-          image: nginx:1.27.0
+          image: nginx:1.27.4
           ports:
             - containerPort: 80
+          imagePullPolicy: Always
     ```
 
 - Start nginx:
@@ -84,9 +85,10 @@ To isolate nginx using a Kata Container pod and to be sure that the Kata Contain
       runtimeClassName: kata-qemu
       containers:
         - name: nginx
-          image: nginx:1.27.0
+          image: nginx:1.27.4
           ports:
             - containerPort: 80
+          imagePullPolicy: Always
     ```
 
     Compared to the last security level, the only difference in the pod configuration is the pod name and the usage of `kata-qemu` as runtime class.
@@ -128,9 +130,10 @@ To isolate nginx using a Kata Container and to protect it using Intel TDX, perfo
       runtimeClassName: kata-qemu-tdx
       containers:
         - name: nginx
-          image: nginx:1.27.0
+          image: nginx:1.27.4
           ports:
             - containerPort: 80
+          imagePullPolicy: Always
     ```
 
     Compared to the last security level, the only difference in the pod configuration is the pod name and the usage of `kata-qemu-tdx` as runtime class.
@@ -185,9 +188,10 @@ To deploy and verify a protected nginx, follow the steps below:
               (curl http://127.0.0.1:8006/aa/token\?token_type\=kbs | grep -iv "get token failed" | grep -iv "error" | grep -i token && echo "ATTESTATION COMPLETED SUCCESSFULLY") || (echo "ATTESTATION FAILED" && exit 1);
       containers:
         - name: nginx
-          image: nginx:1.27.0
+          image: nginx:1.27.4
           ports:
             - containerPort: 80
+          imagePullPolicy: Always
     ```
 
     Compared to the last security level, the differences in the pod configuration are:

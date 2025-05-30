@@ -25,10 +25,17 @@ To see if your pod is affected by this issue, run the following command:
 kubectl describe pod <pod name>
 ```
 
-An error with containerd's plugin (Nydus Snapshotter) will be indicated by the following error message:
+Below kind of errors with containerd's plugin (Nydus Snapshotter) will be indicated by the following error message:
 
 ``` { .text }
 failed to create containerd container: create snapshot: missing parent \"k8s.io/2/sha256:961e...\" bucket: not found
+```
+``` { .text }
+failed to create containerd container: error unpacking image: failed to extract layer sha256:<hash1>: failed to get reader from content store: content digest sha256:<hash2>: not found
+```
+
+``` { .text }
+Error: failed to create containerd container: error unpacking image: failed to extract layer sha256:<SHA>: failed to get reader from content store: content digest sha256:<SHA>: not found
 ```
 
 To resolve the issue, try the following procedure:
@@ -48,14 +55,7 @@ To resolve the issue, try the following procedure:
     sudo crictl rmi --prune
     ```
 
-3. Re-deploy your pod:
-
-    ``` { .bash }
-    kubectl apply -f <pod yaml>
-    ```
-
-4. If the problem persists, uninstall Confidential Containers Operator as described in the [uninstall Confidential Containers Operator](../02/infrastructure_setup.md#uninstall-confidential-containers-operator) section.
-5. Remove all data collected by containerd's plugin (Nydus Snapshotter):
+3. Remove all data collected by containerd's plugin (Nydus Snapshotter):
 
     ``` { .bash }
     sudo ctr -n k8s.io images rm $(sudo ctr -n k8s.io images ls -q)
@@ -63,9 +63,26 @@ To resolve the issue, try the following procedure:
     sudo ctr -n k8s.io snapshots rm $(sudo ctr -n k8s.io snapshots --snapshotter nydus ls | awk 'NR>1 {print $1}')
     ```
 
-6. Re-install Confidential Containers Operator using the instructions provided in the [install Confidential Containers Operator](../02/infrastructure_setup.md#install-confidential-containers-operator) section.
-7. Re-deploy your pod.
+4. Disable optimized disk usage enabled in containerd:
 
+    ``` { .bash }
+    sudo sed -i 's/discard_unpacked_layers = true/discard_unpacked_layers = false/' /etc/containerd/config.toml
+    sudo grep discard_unpacked_layers /etc/containerd/config.toml
+    sudo systemctl restart containerd
+    ```
+
+5. Re-deploy Confidential Containers-related runtime classes using simplified commands based on [install Confidential Containers Operator](../02/infrastructure_setup.md#install-confidential-containers-operator):
+
+    ``` { .bash }
+    kubectl delete -k "github.com/confidential-containers/operator/config/samples/ccruntime/default?ref=$OPERATOR_RELEASE_VERSION"
+    kubectl apply -k "github.com/confidential-containers/operator/config/samples/ccruntime/default?ref=$OPERATOR_RELEASE_VERSION"
+    ```
+
+6. Re-deploy your pod:
+
+    ``` { .bash }
+    kubectl apply -f <pod yaml>
+    ```
 
 ## Attestation Failure
 
