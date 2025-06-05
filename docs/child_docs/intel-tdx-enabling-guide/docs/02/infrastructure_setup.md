@@ -101,26 +101,14 @@ In the following, we provide details of the first alternative.
     === "CentOS Stream 9"
 
         ``` { .bash }
-        --8<-- "docs/code/sgx_repo_setup.sh:pccs-cent-os-stream-9"
+        --8<-- "docs/code/sgx_repo_setup.sh:cent-os-stream-9"
         ```
-
-        !!! Note
-            The provided instructions do not configure the newest package repository.
-            This is necessary, because the newest package repository currently does not contain the PCCS package.
-            The package repository added here can be used in parallel to the newest version of the package repository, because CentOS will automatically select the newest package version when a package is found in multiple package repositories.
-            Alternatively, the package repository configured here can be removed after installing PCCS.
 
     === "Ubuntu 24.04"
 
         ``` { .bash }
-        --8<-- "docs/code/sgx_repo_setup.sh:ubuntu_23_10"
+        --8<-- "docs/code/sgx_repo_setup.sh:ubuntu_24_04"
         ```
-
-        !!! Note
-            This configures the Ubuntu 23.10 package repository.
-            This is necessary, because the Ubuntu 24.04 package repository does currently not contain the PCCS package.
-            The priority of the Ubuntu 23.10 package repository is reduced so that all other packages are installed from the Ubuntu 24.04 package repository.
-            An alternative to the priority setting is to remove the Ubuntu 23.10 package repository after installing PCCS.
 
 3. Install PCCS with following commands.
     During installation, answer `Y` when asked if the PCCS should be installed now, `Y` when asked if PCCS should be configured now, and enter subscription key generated in step 1 when asked for `Intel PCS API key`.
@@ -329,7 +317,7 @@ Detailed steps to use this registration method:
     The following shows a sample log for a successful registration:
 
     ``` { .text }
-    [date time] INFO: SGX Registration Agent version: 1.22.100.3
+    [date time] INFO: SGX Registration Agent version: 1.23.100.0
     [date time] INFO: Starts Registration Agent Flow.
     [date time] INFO: Registration Flow - PLATFORM_ESTABLISHMENT or TCB_RECOVERY passed successfully.
     [date time] INFO: Finished Registration Agent Flow.
@@ -447,7 +435,7 @@ Detailed steps to use this registration method:
             ``` { .text }
             sudo dnf install -y wget
             wget -O PCKIDRetrievalTool.tar.gz \
-                https://download.01.org/intel-sgx/latest/dcap-latest/linux/distro/centos-stream9/PCKIDRetrievalTool_v1.22.100.3.tar.gz
+                https://download.01.org/intel-sgx/latest/dcap-latest/linux/distro/centos-stream9/PCKIDRetrievalTool_v1.23.100.0.tar.gz
             mkdir -p PCKIDRetrievalTool
             tar xvzf PCKIDRetrievalTool.tar.gz \
                 --strip-components=1 \
@@ -458,7 +446,7 @@ Detailed steps to use this registration method:
 
             ``` { .text }
             wget -O PCKIDRetrievalTool.tar.gz \
-                https://download.01.org/intel-sgx/latest/dcap-latest/linux/distro/ubuntu24.04-server/PCKIDRetrievalTool_v1.22.100.3.tar.gz
+                https://download.01.org/intel-sgx/latest/dcap-latest/linux/distro/ubuntu24.04-server/PCKIDRetrievalTool_v1.23.100.0.tar.gz
             mkdir -p PCKIDRetrievalTool
             tar xvzf PCKIDRetrievalTool.tar.gz \
                 --strip-components=1 \
@@ -469,7 +457,7 @@ Detailed steps to use this registration method:
 
             ``` { .text }
             wget -O PCKIDRetrievalTool.tar.gz \
-                https://download.01.org/intel-sgx/latest/dcap-latest/linux/distro/suse15.4-server/PCKIDRetrievalTool_v1.22.100.3.tar.gz
+                https://download.01.org/intel-sgx/latest/dcap-latest/linux/distro/suse15.6-server/PCKIDRetrievalTool_v1.23.100.0.tar.gz
             mkdir -p PCKIDRetrievalTool
             tar xvzf PCKIDRetrievalTool.tar.gz \
                 --strip-components=1 \
@@ -529,7 +517,7 @@ Detailed steps to use this registration method:
     On successful execution of the PCKCIDRT, you'll see output similar to the following:
 
     ``` { .text }
-    Intel(R) Software Guard Extensions PCK Cert ID Retrieval Tool Version 1.22.100.3
+    Intel(R) Software Guard Extensions PCK Cert ID Retrieval Tool Version 1.23.100.0
 
     Registration status has been set to completed status.
     <hostname>.csv has been generated successfully!
