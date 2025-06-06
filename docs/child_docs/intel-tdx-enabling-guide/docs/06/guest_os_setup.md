@@ -32,14 +32,14 @@ To prepare a guest image for these OSes, refer to the instructions provided by t
 
 === "Ubuntu 24.04"
 
-    Follow instruction from the ["Create TD Image" section](https://github.com/canonical/tdx/tree/3.0?tab=readme-ov-file#5-create-td-image) in the Canonical guide.
+    Follow instruction from the ["Create TD Image" section](https://github.com/canonical/tdx/blob/3.3/README.md#5-create-td-image) in the Canonical guide.
 
     !!! warning
         Our guide assumes that the remote attestation packages provided by Canonical are not installed on the guest OS.
         To make sure to not install these packages:
 
         - Keep the default setting of `TDX_SETUP_ATTESTATION=0` during the execution of `create-td-image.sh`.
-        - Do not manually execute `setup-attestation-guest.sh`, which is described in Section 8.3 of the Canonical guide.
+        - Do not manually execute `setup-attestation-guest.sh`, which is described in Section 9.3 of the Canonical guide.
 
 === "openSUSE Leap 15.5 or SUSE Linux Enterprise Server 15-SP5"
 
@@ -56,7 +56,7 @@ To launch a TD, refer to the instructions provided by the individual TDX Early P
 
 === "Ubuntu 24.04"
 
-    Follow instruction from the ["Boot TD" section](https://github.com/canonical/tdx/tree/3.0?tab=readme-ov-file#6-boot-td) in the Canonical guide.
+    Follow instruction from the ["Boot TD" section](https://github.com/canonical/tdx/blob/3.3/README.md#6-boot-td) in the Canonical guide.
 
 === "openSUSE Leap 15.5 or SUSE Linux Enterprise Server 15-SP5"
 

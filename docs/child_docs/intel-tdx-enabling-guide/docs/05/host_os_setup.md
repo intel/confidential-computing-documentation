@@ -33,7 +33,7 @@ To install the Intel TDX host OS kernel with KVM support, as well as the QEMU an
 
 === "Ubuntu 24.04"
 
-    Follow instruction from the ["Setup Host OS" section](https://github.com/canonical/tdx/tree/3.0?tab=readme-ov-file#setup-host-os) in the Canonical guide.
+    Follow instruction from the ["Setup Host OS" section](https://github.com/canonical/tdx/blob/3.3/README.md#4-setup-host-os) in the Canonical guide.
     Note that we cover step "4.3 Enable Intel TDX in the Host's BIOS" on our [Hardware Setup page](../04/hardware_setup.md#enable-intel-tdx-in-bios) and a more detailed version of "4.4 Verify Intel TDX is Enabled on Host OS" is covered in [the next section of this page](#check-intel-tdx-enablement).
 
     !!! warning
@@ -41,7 +41,7 @@ To install the Intel TDX host OS kernel with KVM support, as well as the QEMU an
         To make sure to not install these packages:
 
         - Keep the default setting of `TDX_SETUP_ATTESTATION=0` during the execution of `setup-tdx-host.sh`.
-        - Do not manually execute `setup-attestation-host.sh`, which is described in Section 8.2 of the Canonical guide.
+        - Do not manually execute `setup-attestation-host.sh`, which is described in Section 9.2 of the Canonical guide.
 
 === "openSUSE Leap 15.5 or SUSE Linux Enterprise Server 15-SP5"
 
