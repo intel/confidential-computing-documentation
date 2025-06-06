@@ -717,6 +717,7 @@ Requirements of this method:
         Another platform with Internet access must be available.
         This option is usable in an air-gapped environment.
         The platform with Internet access does not need to support Intel TDX.
+
 - A subscription key for the [Intel PCS](https://api.portal.trustedservices.intel.com/provisioning-certification)
 - The [PCK Cert ID Retrieval Tool](https://github.com/intel/SGXDataCenterAttestationPrimitives/tree/master/tools/PCKRetrievalTool) (PCKCIDRT) — a tool to support the retrieval of the PM and other platform information.
 - The [PCCS Admin Tool](https://github.com/intel/SGXDataCenterAttestationPrimitives/tree/master/tools/PccsAdminTool) — a tool to facilitate Indirect Registration, PCK Certificate retrieval, and verification collateral retrieval especially in multi-platform environments.
