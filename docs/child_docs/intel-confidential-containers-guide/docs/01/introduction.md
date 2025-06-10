@@ -32,11 +32,6 @@ This guide also assumes that you have already [enabled and configured Intel® TD
 The master node (aka control plane) does not need to have Intel® TDX enabled.
 All provided steps should be executed on the master node if not specified otherwise.
 
-!!! note "Intel TDX Enabling"
-    The Intel TDX Enabling Guide referred to above does not yet fully cover Ubuntu 24.04.
-    For additional details, refer to [Canonical's guide](https://github.com/canonical/tdx/blob/noble-24.04/README.md) to configure Intel TDX.
-    Especially, the [remote attestation chapter](https://github.com/canonical/tdx/blob/noble-24.04/README.md#setup-remote-attestation) provides details about the configuration of remote attestation.
-
 This guide is divided into the following sections:
 
 - [Infrastructure Setup](../02/infrastructure_setup.md): This section provides instructions on setting up the infrastructure in an existing Kubernetes cluster to be able to run Intel TDX-protected applications.
@@ -54,7 +49,7 @@ The guide was tested on the following hardware:
 
 - 4th Gen Intel® Xeon® Scalable processors
 - 5th Gen Intel® Xeon® Scalable processors
-
+- 6th Gen Intel® Xeon® Scalable processors
 
 ## Further reading
 

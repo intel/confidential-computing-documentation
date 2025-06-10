@@ -49,8 +49,8 @@ Ensure that your infrastructure meets the following requirements:
 
     !!! note "Intel TDX Enabling"
         The registration of Intel platform referred above does not yet fully cover Ubuntu 24.04.
-        For additional details, refer to [Canonical's guide](https://github.com/canonical/tdx/blob/noble-24.04/README.md) to configure Intel TDX.
-        Especially, the [remote attestation chapter](https://github.com/canonical/tdx/blob/noble-24.04/README.md#setup-remote-attestation) provides details about the configuration of remote attestation.
+        For additional details, refer to [Canonical's guide](https://github.com/canonical/tdx/blob/3.3/README.md) to configure Intel TDX.
+        Especially, the [remote attestation chapter](https://github.com/canonical/tdx/blob/3.3/README.md#setup-remote-attestation) provides details about the configuration of remote attestation.
 
 
 ### Intel Trust Authority API Key
