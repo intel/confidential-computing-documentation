@@ -784,7 +784,7 @@ Detailed steps to use this registration method:
         !!! Note
             When no longer needed, the virtual Python environment can be deactivated by executing `deactivate`.
 
-7. On the Registration Platform, execute the following command to trigger the merge of all individual `.csv` files to a single *input JSON file* using the PCCS Admin Tool (after adjusting the command line options to your environment).
+7. On the Registration Platform, execute the following command to trigger the merge of all individual `.csv` files to a single *platform list file* using the PCCS Admin Tool (after adjusting the command line options to your environment).
     By default, the result file is called `platform_list.json`.
 
     === "CentOS Stream 9"
@@ -799,7 +799,7 @@ Detailed steps to use this registration method:
         venv/bin/python ./pccsadmin.py collect -d <platforms_to_register_path>
         ```
 
-8. On the Registration Platform, execute the following command to trigger the transmission of the data contained in the input JSON file to the PCS using the PCCS Admin Tool.
+8. On the Registration Platform, execute the following command to trigger the transmission of the data contained in the platform list file to the PCS using the PCCS Admin Tool.
     During execution, enter the PCCS subscription key retrieved in step 1 when asked for `ApiKey for Intel PCS` and answer `n` when asked to remember Intel PCS ApiKey in OS keyring.
     All returned PCK Certificates are stored in the file `platform_collaterals.json`.
 
@@ -815,7 +815,7 @@ Detailed steps to use this registration method:
         venv/bin/python ./pccsadmin.py fetch
         ```
 
-    By executing this command, the PCCS Admin Tool will also request the verification collateral for all platforms contained in the input JSON file.
+    By executing this command, the PCCS Admin Tool will also request the verification collateral for all platforms contained in the platform list file.
     The result is also written into the file `platform_collaterals.json`.
 
 9. Use any out-of-band mechanism to copy the `platform_collaterals.json` file to any platform with access to the PCCS — called PCCS Insertion Platform in the following.
@@ -908,7 +908,7 @@ Detailed steps to use this registration method:
         !!! Note
             When no longer needed, the virtual Python environment can be deactivated by executing `deactivate`.
 
-5. On the Registration Platform, execute the following command to trigger the merge of all individual `.csv` files to a single *input JSON file* using the PCCS Admin Tool (after adjusting the command line options to your environment).
+5. On the Registration Platform, execute the following command to trigger the merge of all individual `.csv` files to a single *platform list file* using the PCCS Admin Tool (after adjusting the command line options to your environment).
     By default, the result file is called `platform_list.json`.
 
     === "CentOS Stream 9"
@@ -937,9 +937,8 @@ Detailed steps to use this registration method:
         venv/bin/python ./pccsadmin.py cache
         ```
 
-    The PCCS Admin Tool uses the data contained in the input JSON file to retrieve the corresponding PCK Certificates and TCB Infos from the PCS.
-    The tool generates a cache file for each platform contained in the input JSON file.
-    By default, each cache file is written to the output folder `./cache/<input JSON filename>/` and has the name `<qe_id>_<pce_id>`.
+    The PCCS Admin Tool uses the data contained in the platform list file to retrieve the corresponding PCK Certificates and TCB Infos from the PCS.
+    For each entry in the platform list file, the tool generates a cache file at the path `./cache/<csv filename>/<qe_id>_<pce_id>` with `<csv filename>` being the name of the `.csv` file used as input to the platform list file.
 
 7. Use any out-of-band mechanism to copy the individual cache file of every registered platform back to the corresponding registered platform.
 8. On each registered platform with a corresponding cache file, the cached data is used automatically during TD Quote Generation.
