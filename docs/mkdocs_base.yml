@@ -37,6 +37,9 @@ plugins:
   macros:
     module_name: main
     on_error_fail: false
+  caption:
+    table:
+      position: top
   print-site:
     add_cover_page: true
     cover_page_template: "docs/assets/templates/cover_page.tpl"
