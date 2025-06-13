@@ -12,6 +12,7 @@ theme:
     - header.autohide
     - content.action.edit
     - content.action.view
+    - navigation.indexes
   icon:
     repo: fontawesome/brands/github
   palette:
