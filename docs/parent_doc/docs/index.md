@@ -45,4 +45,10 @@ No content yet.
 
 ## Common
 
-No content yet.
+<div class="grid cards" markdown><!-- markdownlint-disable-line MD033 -->
+
+- [:octicons-arrow-right-24: **Remote Attestation for Multi-Package Platforms using Intel® SGX Datacenter Attestation Primitives (DCAP)**](intel-dcap-mp-ra/01/introduction/index.html)
+
+    This guide provides information on the DCAP platform software and tools that support multi-package registration and a brief overview of the multi-package boot flows and components.
+
+</div>

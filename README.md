@@ -151,6 +151,18 @@ Process:
         -f docs/child_docs/intel-confidential-containers-guide/mkdocs.yml
         ```
 
+    - Remote Attestation for Multi-Package Platforms using Intel® SGX Datacenter Attestation Primitives (DCAP):
+
+        ``` {.bash}
+        docker run --rm -i \
+        --env LOCAL_DEPLOYMENT=true \
+        -p 8000:8000 \
+        --name cc-docu \
+        -v ${PWD}:/docs \
+        intel/cc-docu \
+        -f docs/child_docs/intel-dcap-mp-ra/mkdocs.yml
+        ```
+
 - Open the preview of the documentation in your browser.
     The default URL is [http://localhost:8000/](http://localhost:8000/).
     - Whenever you do a change to the documentation sources and save your change, the browser-based documentation will automatically reload without manual interaction

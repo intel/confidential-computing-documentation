@@ -1,0 +1,24 @@
+INHERIT: ../../mkdocs_base.yml
+
+site_name: Remote Attestation for Multi-Package Platforms using Intel® SGX Datacenter Attestation Primitives (DCAP)
+
+edit_uri: edit/main/docs/child_docs/intel-dcap-mp-ra/docs/
+watch:
+  - includes
+nav:
+  - Introduction: 01/introduction.md
+  - Overview: 02/overview.md
+  - Multi-Package Registration Platform Software Tools: 03/mp-reg-platform-sw-tools.md
+  - Multi-Package Registration Libraries :
+    - SGX Multi-Package UEFI Variables Access Library : 04/mp-reg-lib.md
+    - SGX Multi-Package Registration Service Network Library (MP Network Library) : 04/mp_network_library.md
+  - Appendix A - Data Structures: 05/data-structures.md
+  - Appendix B - BIOS Multi-Package UEFI Variables:
+    - 06/index.md
+    - SGX Registration Configuration : 06/sgx_registration_configuration.md
+    - SGX Registration Server Request : 06/sgx_registration_server_request.md
+    - SGX Registration Server Response : 06/sgx_registration_server_response.md
+    - SGX Registration Package Info : 06/sgx_registration_package_info.md
+    - SGX Registration Status : 06/sgx_registration_status.md
+not_in_nav: |
+  misc/notices_and_disclaimers.md
