@@ -29,7 +29,7 @@ Detailed instructions on how to contribute, including guidelines for submitting 
 
 - [:octicons-arrow-right-24: **Intel® TDX Enabling Guide**](intel-tdx-enabling-guide/01/introduction/index.html)
 
-    This guide provides a distilled set of instructions for integrating, deploying, and using Intel TDX.
+    This guide provides a set of instructions for integrating, deploying, and using Intel TDX.
 
 - [:octicons-arrow-right-24: **Intel Confidential Containers Guide**](intel-confidential-containers-guide/01/introduction/index.html)
 
