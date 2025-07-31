@@ -35,24 +35,38 @@ Afterwards, we briefly describe these BIOS settings.
 
     It might be necessary to [enable Intel TDX on the host OS](../05/host_os_setup.md#enable-intel-tdx-in-the-host-os), before Intel TDX is enabled in the BIOS.
 
-<!-- TODO: Decide if a "programmable", but large graph should be used or just a figure.  -->
-??? info "BIOS settings for a Quanta S6Q system with 5th Gen Intel® Xeon® Scalable processors"
+!!! info "BIOS settings for a Quanta S6Q system with 5th Gen Intel® Xeon® Scalable processors"
 
     ``` mermaid
-    graph LR
+    %%{ init: { "flowchart": { "curve": "step", "nodeSpacing": 20, "rankSpacing": 30 } } }%%
+    flowchart LR
     SC[Socket<br />Configuration];
-    SC --> MC[Memory<br />Configuration];
-    MC --> A1[Memory Map] --> A2[Volatile Memory Mode] --> A3[1LM];
     SC --> PC[Processor<br />Configuration];
     PC --> B1["Memory Encryption (TME)"] --> B2[Enabled];
-    PC --> C1["Total Memory Encryption (TME) Bypass"] --> C2[Disabled];
-    PC --> D1["Total Memory Encryption Multi-Tenant (TME-MT)"] --> D2[Enabled];
-    PC --> E1["Memory integrity"] --> E2[Enabled or Disabled];
+    PC --> C1["Total Memory Encryption<br />(TME) Bypass"] --> C2[Disabled];
+    PC --> D1["Total Memory Encryption<br />Multi-Tenant (TME-MT)"] --> D2[Enabled];
+    PC --> E1["Memory integrity"] --> E2[Enabled or<br />Disabled];
     PC --> F1["Trust Domain Extension (TDX)"] --> F2[Enabled];
-    PC --> G1["TDX Secure Arbitration Mode Loader (SEAM Loader)"] --> G2[Enabled];
+    PC --> G1["TDX Secure Arbitration<br />Mode Loader (SEAM Loader)"] --> G2[Enabled];
     PC --> H1[TME-MT/TDX key split] --> H2[Non-zero value]
     PC --> I1["SW Guard Extensions (SGX)"] --> I2[Enabled];
     PC --> J1[SGX PRM Size] --> J2[Whatever size<br />needed];
+    ```
+
+!!! info "BIOS settings for a Beechnut City system with Intel® Xeon® 6 processors"
+
+    ``` mermaid
+    %%{ init: { "flowchart": { "curve": "step", "nodeSpacing": 20, "rankSpacing": 30 } } }%%
+    flowchart LR
+    SC[Socket<br />Configuration];
+    SC --> SeC[Security<br />Configuration];
+    SeC --> D1["Memory integrity"] --> D2[Enabled or<br />Disabled];
+    SeC --> F1["Trust Domain Extension (TDX)"] --> F2[Enabled];
+    SeC --> G1["TDX Secure Arbitration<br />Mode Loader (SEAM Loader)"] --> G2[Enabled];
+    SeC --> H1[TME-MT/TDX key split] --> H2[Non-zero value]
+    SeC --> I1["SW Guard Extensions (SGX)"] --> I2[Enabled];
+    SeC --> J1[SGX PRMRR Size] --> J2[Whatever size<br />needed];
+    SC --> P1[Uncore<br />Configuration] --> P2[Uncore General<br />Configuration] --> P3[Limit CPU<br />PA to 46 bits] --> P4[Disabled]
     ```
 
 Explanation of BIOS settings:
@@ -68,7 +82,7 @@ Explanation of BIOS settings:
 | TDX Secure Arbitration Mode Loader (SEAM Loader) | Defines from where the Intel TDX Module is loaded. |
 | TME-MT/TDX key split | Defines how many keys are used for Intel TME-MK and how many for Intel TDX. |
 | SW Guard Extensions (SGX) | Activates/deactivates Intel SGX, which is used by Intel TDX for remote attestation. |
-| SGX PRM Size | Defines the size of the Processor Reserved Memory (PRM), which is used by Intel SGX to hold enclaves and related protected data structures. A minimum SGX PRM is required to run the Quote Generation Service (QGS) on the host OS (or inside a dedicated VM). |
+| SGX PRM/PRMRR Size | Defines the size of the Processor Reserved Memory (PRM), which is used by Intel SGX to hold enclaves and related protected data structures. A minimum SGX PRM is required to run the Quote Generation Service (QGS) on the host OS (or inside a dedicated VM). |
 
 
 ## Deploy Specific Intel TDX Module Version
