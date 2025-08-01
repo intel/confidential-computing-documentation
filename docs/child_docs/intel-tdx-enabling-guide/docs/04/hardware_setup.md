@@ -60,6 +60,8 @@ Afterwards, we briefly describe these BIOS settings.
     flowchart LR
     SC[Socket<br />Configuration];
     SC --> SeC[Security<br />Configuration];
+    SeC --> A1["Memory Encryption (TME)"] --> A2[Enabled];
+    SeC --> B1["Total Memory Encryption<br />Multi-Tenant (TME-MT)"] --> B2[Enabled];
     SeC --> D1["Memory integrity"] --> D2[Enabled or<br />Disabled];
     SeC --> F1["Trust Domain Extension (TDX)"] --> F2[Enabled];
     SeC --> G1["TDX Secure Arbitration<br />Mode Loader (SEAM Loader)"] --> G2[Enabled];
