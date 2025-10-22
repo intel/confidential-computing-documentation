@@ -1,8 +1,8 @@
-# Copyright (C) 2024 Intel Corporation
+# Copyright (C) 2025 Intel Corporation
 # SPDX-License-Identifier: MIT
 
 # Serve the built documentation using Nginx
-FROM nginx:1.27.1-alpine
+FROM nginx:1.29.2-alpine
 
 # Expose port 80
 EXPOSE 80
