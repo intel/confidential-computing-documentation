@@ -68,6 +68,7 @@ markdown_extensions:
     emoji_generator: !!python/name:material.extensions.emoji.to_svg
   footnotes: {}
   pymdownx.blocks.caption: {}
+  pymdownx.blocks.admonition: {}
 extra_css:
   - stylesheets/extra.css
 extra:
