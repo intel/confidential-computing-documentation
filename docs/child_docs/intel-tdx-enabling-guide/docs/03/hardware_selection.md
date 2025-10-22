@@ -29,7 +29,7 @@ At minimum, all slot 0's of all Integrated Memory Controller (IMC) channels for 
 DIMM population must be symmetric across IMCs.
 
 The following figure shows possible populations per populated CPU with 8 or 16 DIMMs:
-<figure markdown>
-  ![Possible memory configuration per populated CPU with 8 or 16 DIMMs](images/tdx_memory_requirements.svg){ loading=lazy }
-  <figcaption>Possible memory configuration per populated CPU with 8 or 16 DIMMs</figcaption>
-</figure>
+![Possible memory configuration per populated CPU with 8 or 16 DIMMs](./images/tdx_memory_requirements.svg)
+/// figure-caption
+Possible memory configuration per populated CPU with 8 or 16 DIMMs
+///
