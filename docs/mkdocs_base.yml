@@ -69,8 +69,10 @@ markdown_extensions:
   footnotes: {}
   pymdownx.blocks.caption: {}
   pymdownx.blocks.admonition: {}
+  neoteroi.spantable: {}
 extra_css:
   - stylesheets/extra.css
+  - stylesheets/spantable.css
 extra:
   scope: /
   environment:

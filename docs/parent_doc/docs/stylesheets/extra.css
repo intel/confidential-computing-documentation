@@ -11,6 +11,10 @@ aside.md-banner {
     --md-accent-fg-color:         #0095CA;
     --md-primary-fg-color--light: #15BCEF;
     --md-primary-fg-color--dark:  #00377C;
+    --cell-green: #D6E3BC;
+    --cell-blue:  #B6DDE8;
+    --cell-red:   #E5B8B7;
+    --cell-orange: #fce5a6;
 }
 
 [data-md-color-primary="intel-dark"] {
@@ -18,6 +22,10 @@ aside.md-banner {
     --md-accent-fg-color:         #548FAD;
     --md-primary-fg-color--light: #183544;
     --md-primary-fg-color--dark:  #548FAD;
+    --cell-green: #5d762b;
+    --cell-blue:  #254a55;
+    --cell-red:   #5c2221;
+    --cell-orange: #ba8903;
 }
 
 .md-header--shadow {
