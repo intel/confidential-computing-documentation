@@ -16,8 +16,6 @@ Currently, the only response data from the registration authority service platfo
 You should clear the data in this variable once it is consumed by BIOS to protect privacy sensitive data on the next boot.
 
 <!-- markdownlint-disable MD033 -->
-Table: SgxRegistrationServerResponse
-
 |               |    |
 |---------------|----|
 | `GUID`        | `89589c7b-b2d9-4fc9-bcda-463b983b2fb7` |
@@ -25,14 +23,20 @@ Table: SgxRegistrationServerResponse
 | `Attributes`  | Read-Write |
 | `Description` | This variable is created by OS/SW using data it received from the registration authority server. <br />Contains response data from the registration server. |
 | `Fields` | See table SgxRegistrationServerResponse Fields |
+
+/// table-caption
+SgxRegistrationServerResponse
+///
 <!-- markdownlint-enable MD033 -->
 
 <!-- markdownlint-disable MD033 -->
-Table: SgxRegistrationServerResponse Fields
-
 | Name                              | Size -| Type       | Description  |
 |-----------------------------------|-------|------------|--------------|
 | `Version`                         | 2     | LE Integer | `1`          |
 | `Size`                            | 2     | LE Integer | Size in bytes of data below |
 | `Platform Member Ship Certs[8]`   | `8 * sizeof(PLATFORM_MEMBERSHIP_CERT)` | Mix | Array of platform memberships certs returned by the registration server. <br />Empty array elements are all `0x00`s. <br />BIOS clears the data once it has read it |
+
+/// table-caption
+SgxRegistrationServerResponse Fields
+///
 <!-- markdownlint-enable MD033 -->

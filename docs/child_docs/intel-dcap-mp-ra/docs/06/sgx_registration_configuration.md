@@ -24,8 +24,6 @@ Software uses this flag to determine if direct or indirect registration is enabl
 The flag can be modified using the BIOS UI's 'SGX Auto MP Registration' knob.
 
 <!-- markdownlint-disable MD033 -->
-Table: SgxRegistrationConfiguration
-
 |    |    |
 |----|----|
 | `GUID` | `18b3bc81-e210-42b9-9ec8-2c5a7d4d89b6` |
@@ -33,17 +31,23 @@ Table: SgxRegistrationConfiguration
 | `Attributes` | <ul><li>`Read-only` when SGX is enabled.</li><li>`Read-Write` when SGX is disabled.</li></ul> |
 | `Description` | BIOS creates this variable during all boot flows. Software can use it to modify the registration authority service. |
 | `Fields` | See table SgxRegistrationConfiguration Fields |
+
+/// table-caption
+SgxRegistrationConfiguration
+///
 <!-- markdownlint-enable MD033 -->
 
 <!-- markdownlint-disable MD033 -->
-Table: SgxRegistrationConfiguration Fields
-
 | Name                  | Size  | Type          | Description   |
 |-----------------------|-------|---------------|---------------|
 | `Version`             | 2     | LE Integer    | 1             |
 | `Size`                | 2     | LE Integer    | Size in bytes of data below|
 | `Flags`               | 2     | LE Integer    | `BIT 0`:&nbsp;&nbsp;&nbsp;&nbsp;RS Encrypted Keys<br />&nbsp;&nbsp;&nbsp;&nbsp;`0`: Registration Server saves platform keys<br />&nbsp;&nbsp;&nbsp;&nbsp;`1`: Registration Server does not save platform keys<br />`Bits 1:15`:&nbsp;&nbsp;&nbsp;&nbsp;Reserved MBZ |
 | `SgxRegServerInfo`    | 1514  | Mix           | As defined in MP SGX_REGISTRATION_SERVER_INFO |
+
+/// table-caption
+SgxRegistrationConfiguration Fields
+///
 <!-- markdownlint-enable MD033 -->
 
 !!! note

@@ -106,7 +106,10 @@ For more information on the Intel® SGX RS, see the [https://api.portal.trusteds
 The SGX platform keys for a multi-package platform have a lifecycle depending on the state of the boot flow.
 This section provides a brief overview of each state.
 
-![Platform Key Life Cycle][PLATFORM_KEY_LIFECYCLE]
+![Platform Key Life Cycle](./img/platform-key-life-cycle.svg)
+/// figure-caption
+Platform Key Life Cycle
+///
 
 The BIOS uses data structures called key blobs to determine the state of the platform.
 The key blobs contain the platform keys that are negotiated for the platform.
@@ -333,7 +336,6 @@ Add Package flows may not be suitable for the dual-stage environment unless you 
 
 See [PCK Cert ID Retrieval Tool][pckidretTool] for more information on supporting this environment.
 
-[PLATFORM_KEY_LIFECYCLE]:  ./img/platform-key-life-cycle.svg
 [TSAP]:  https://api.portal.trustedservices.intel.com/
 [TSAPRP]:  https://api.portal.trustedservices.intel.com/content/documentation.html#register-platform
 [serverid]:  ../06/sgx_registration_configuration.md#sgx-registration-server-id
