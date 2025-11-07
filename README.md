@@ -161,6 +161,17 @@ Process:
         -v ${PWD}:/docs \
         intel/cc-docu \
         -f docs/child_docs/intel-dcap-mp-ra/mkdocs.yml
+
+    - Intel SGX Software Installation Guide:
+
+        ``` {.bash}
+        docker run --rm -i \
+        --env LOCAL_DEPLOYMENT=true \
+        -p 8000:8000 \
+        --name cc-docu \
+        -v ${PWD}:/docs \
+        intel/cc-docu \
+        -f docs/child_docs/intel-sgx-sw-installation-guide-linux/mkdocs.yml
         ```
 
 - Open the preview of the documentation in your browser.

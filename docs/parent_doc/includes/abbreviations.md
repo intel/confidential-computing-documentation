@@ -4,6 +4,8 @@ SPDX-License-Identifier: CC-BY-4.0
 -->
 <!-- markdownlint-disable-next-line MD041 -->
 *[ACM]: Authenticated Code Module
+*[AE]: Architectural Enclave
+*[AESM]: Architectural Enclave Service Manager
 *[CA]: Certificate Authority
 *[CoCo]: Confidential Containers
 *[CSP]: Cloud Service Provider
@@ -19,34 +21,37 @@ SPDX-License-Identifier: CC-BY-4.0
 *[Intel SGX]: Intel® Software Guards Extensions
 *[Intel TME-MK]: Intel® Total Memory Encryption – Multi-Key
 *[Intel TDX]: Intel® Trust Domain Extensions
-*[Intel® TDX]: Intel® Trust Domain Extensions
 *[IPU]: Intel Platform Update
 *[IRS]: Intel® SGX and Intel® TDX Registration Service for Scalable Platforms
 *[ISV]: Independent Software Vendor
 *[KBS]: Key Broker Service
 *[MPA]: Multi-package Registration Agent
 *[MSR]: model specific register
+*[PCCS]: Provisioning Certificate Caching Service
 *[PCE]: Provisioning Certification Enclave
 *[PCK]: Provisioning Certification Key
 *[PCKCIDRT]: PCK Cert ID Retrieval Tool
 *[PCS]: Intel® Provisioning Certification Service for ECDSA Attestation
-*[PCCS]: Provisioning Certificate Caching Service
 *[PM]: Platform Manifest
 *[PPID]: Platform Provisioning ID
 *[PRID]: Provisioning Registration ID
 *[PRK]: Platform Registration Key
 *[PRM]: Processor Reserved Memory
 *[PSVN]: Platform Security Version Numbers
+*[PSW]: Platform Software
 *[QCNL]: PCK Certificate Collateral Network Library
-*[QGS]: Quote Generation Service
 *[QE]: Quoting Enclave
+*[QGS]: Quote Generation Service
 *[QL]: Quoting Library
 *[QPL]: Quote Provider Library
+*[OS]: Operating System
+*[OSes]: Operating Systems
 *[QVS]: Quote Verification Service
 *[REST]: Representational State Transfer
 *[RSAK]: Registration Service Authentication Key
 *[RSEK]: Registration Server's Encryption Key
 *[RSNAME]: Registration Service Name
+*[SDK]: Software Development Kit
 *[SEAM]: Secure Arbitration Mode
 *[SEAMRR]: SEAM Range Register
 *[SI]: System Integrator
@@ -55,13 +60,11 @@ SPDX-License-Identifier: CC-BY-4.0
 *[TCB]: Trusted Compute Base
 *[TCB-R]: TCB-Recovery
 *[TCB-Rs]: TCB-Recoveries
-*[TEE]: Trusted Execution Environment
 *[TD]: Trust Domain
 *[TDs]: Trust Domains
+*[TEE]: Trusted Execution Environment
 *[TXT]: Trusted Execution Technology
-*[OS]: Operating System
-*[OSes]: Operating Systems
 *[VM]: Virtual Machine
-*[VMs]: Virtual Machines
 *[VMM]: Virtual Machine Monitor
+*[VMs]: Virtual Machines
 *[VMX]: Virtual Machine Extensions

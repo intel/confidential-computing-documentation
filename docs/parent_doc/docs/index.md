@@ -40,7 +40,13 @@ Detailed instructions on how to contribute, including guidelines for submitting 
 
 ## Intel® Software Guard Extensions (Intel® SGX)
 
-No content yet.
+<div class="grid cards" markdown><!-- markdownlint-disable-line MD033 -->
+
+- [:octicons-arrow-right-24: **Intel® SGX Software Installation Guide for Linux OS**](intel-sgx-sw-installation-guide-linux/01/introduction/)
+
+    This guide provides a set of instructions for installing Intel SGX software components.
+
+</div>
 
 
 ## Common
