@@ -1115,7 +1115,7 @@ Additionally, you have to install the Intel® SGX Software Development Kit (Inte
         libsgx-quote-ex-devel \
         libsgx-dcap-ql-devel \
         libsgx-dcap-quote-verify-devel \
-        tee_appraisal_tool
+        tee-appraisal-tool
     ```
 
     !!! Note
@@ -1132,7 +1132,7 @@ Additionally, you have to install the Intel® SGX Software Development Kit (Inte
         libsgx-quote-ex-devel \
         libsgx-dcap-ql-devel \
         libsgx-dcap-quote-verify-devel \
-        tee_appraisal_tool
+        tee-appraisal-tool
     ```
 
     !!! Note
@@ -1146,7 +1146,7 @@ Additionally, you have to install the Intel® SGX Software Development Kit (Inte
     sudo apt-get install libsgx-enclave-common-dev \
         libsgx-dcap-ql-dev \
         libsgx-dcap-default-qpl-dev \
-        tee_appraisal_tool
+        tee-appraisal-tool
     ```
 
     !!! Note
